@@ -1,0 +1,229 @@
+**********************
+PowerShell transcript start
+Start time: 20260808021910
+Username: Rifats-MacBook-Pro\rifat
+RunAs User: Rifats-MacBook-Pro\rifat
+Configuration Name: 
+Machine: Rifats-MacBook-Pro (Unix 26.5.2)
+Host Application: /usr/local/microsoft/powershell/7/pwsh.dll
+Process ID: 91413
+PSVersion: 7.6.4
+PSEdition: Core
+GitCommitId: 7.6.4
+OS: macOS 26.5.2
+Platform: Unix
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is ./evidence/phase3/P3-E21_Graph-Test-Transcript-20260808-021906.txt
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $transcriptFile = "./evidence/phase3/P3-E21_Graph-Test-Transcript-$((Get-Date).ToString('yyyyMMdd-HHmmss')).txt"
+PS /Users/rifat/Documents/sunhaven-workforce-iam> Start-Transcript -Path $transcriptFile
+Transcript started, output file is ./evidence/phase3/P3-E21_Graph-Test-Transcript-20260808-021925.txt
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $existingUsers = @(
+    Get-MgUser `
+      -Filter "userPrincipalName eq '$testUpn'" `
+      -Property Id,DisplayName,UserPrincipalName,EmployeeId
+)
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $existingUsers | Select-Object Id,DisplayName,UserPrincipalName,EmployeeId
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $existingUsers.Count
+0
+PS /Users/rifat/Documents/sunhaven-workforce-iam> if ($existingUsers.Count -ne 0) {
+    throw "STOP: The automation test user already exists. Do not create a duplicate."
+}
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $groups = @(
+    Get-MgGroup `
+      -Filter "displayName eq '$targetGroupName'" `
+      -Property Id,DisplayName,SecurityEnabled,GroupTypes
+)
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $groups | Select-Object Id,DisplayName,SecurityEnabled,GroupTypes
+
+Id                                   DisplayName       SecurityEnabled GroupTypes
+--                                   -----------       --------------- ----------
+6562e070-0174-4701-bc0e-226c746e4d2b SG-SC-CareWorkers            True {}
+
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $groups.Count
+1
+PS /Users/rifat/Documents/sunhaven-workforce-iam> if ($groups.Count -ne 1) {
+    throw "STOP: Expected exactly one SG-SC-CareWorkers group."
+}
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $group = $groups[0]
+PS /Users/rifat/Documents/sunhaven-workforce-iam> if ($group.SecurityEnabled -ne $true) {
+    throw "STOP: Target group is not a security group."
+}
+PS /Users/rifat/Documents/sunhaven-workforce-iam> if ($groups.Count -ne 1) {
+    throw "STOP: Expected exactly one SG-SC-CareWorkers group."
+}
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $group = $groups[0]
+PS /Users/rifat/Documents/sunhaven-workforce-iam> if ($group.SecurityEnabled -ne $true) {
+    throw "STOP: Target group is not a security group."
+}
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $group | Select-Object DisplayName, SecurityEnabled
+
+DisplayName       SecurityEnabled
+-----------       ---------------
+SG-SC-CareWorkers            True
+
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $passwordBytes = [byte[]]::new(18)
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $rng = [Security.Cryptography.RandomNumberGenerator]::Create()
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $rng.GetBytes($passwordBytes)
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $rng.Dispose()
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $temporaryPassword = [Convert]::ToBase64String($passwordBytes) + "!aA1"
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $userBody = @{
+    accountEnabled = $true
+    displayName = "Automation Test User (TEST)"
+    mailNickname = "automation.test"
+    userPrincipalName = $testUpn
+    employeeId = $employeeId
+    jobTitle = "CareWorker"
+    department = "Sydney Care Facility"
+    usageLocation = "AU"
+    userType = "Member"
+    passwordProfile = @{
+        password = $temporaryPassword
+        forceChangePasswordNextSignIn = $true
+    }
+}
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $user = $null
+PS /Users/rifat/Documents/sunhaven-workforce-iam> try {
+    $user = New-MgUser -BodyParameter $userBody -ErrorAction Stop
+}
+finally {
+    $temporaryPassword = $null
+    $passwordBytes = $null
+    $userBody["passwordProfile"]["password"] = $null
+    $userBody = $null
+}
+PS /Users/rifat/Documents/sunhaven-workforce-iam> if (-not $user) {
+    throw "STOP: User creation failed."
+}
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $createdUser = Get-MgUser `
+    -UserId $user.Id `
+    -Property Id,DisplayName,UserPrincipalName,AccountEnabled,EmployeeId,JobTitle,Department
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $createdUser | Select-Object `
+    Id,
+    DisplayName,
+    UserPrincipalName,
+    AccountEnabled,
+    EmployeeId,
+    JobTitle,
+    Department
+
+Id                : 587736be-53a2-44ed-9cc5-91829203ca0d
+DisplayName       : Automation Test User (TEST)
+UserPrincipalName : automation.test@rifat011002gmail.onmicrosoft.com
+AccountEnabled    : True
+EmployeeId        : SC-AUTO-001
+JobTitle          : CareWorker
+Department        : Sydney Care Facility
+
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $cleanupTarget = Get-MgUser `
+    -UserId $user.Id `
+    -Property Id,DisplayName,UserPrincipalName
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $cleanupTarget | Select-Object Id,DisplayName,UserPrincipalName
+
+Id                                   DisplayName                 UserPrincipalName
+--                                   -----------                 -----------------
+587736be-53a2-44ed-9cc5-91829203ca0d Automation Test User (TEST) automation.test@rifat011002gmail.onmicrosoft.com
+
+PS /Users/rifat/Documents/sunhaven-workforce-iam> if ($cleanupTarget.UserPrincipalName -ne $testUpn) {
+    throw "STOP: Cleanup target does not match the intended automation user."
+}
+PS /Users/rifat/Documents/sunhaven-workforce-iam> Remove-MgGroupMemberByRef `
+    -GroupId $group.Id `
+    -DirectoryObjectId $user.Id `
+    -Confirm:$true
+Confirm
+Are you sure you want to perform this action?
+Performing the operation "Remove-MgGroupMemberDirectoryObjectByRef_Delete" on target "Call remote 'DELETE /groups/{group-id}/members/{directoryObject-id}/$ref' operation".
+&Yes  Yes to &All  &No  No to A&ll  &Suspend
+Y
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $membershipAfterRemoval = @(
+    Get-MgGroupMember -GroupId $group.Id -All |
+    Where-Object { $_.Id -eq $user.Id }
+)
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $membershipAfterRemoval.Count
+0
+PS /Users/rifat/Documents/sunhaven-workforce-iam> Remove-MgUser -UserId $user.Id -Confirm:$true
+Confirm
+Are you sure you want to perform this action?
+Performing the operation "Remove-MgUser_Delete" on target "Call remote 'DELETE /users/{user-id}' operation".
+&Yes  Yes to &All  &No  No to A&ll  &Suspend
+Y
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $activeMatches = @(
+    Get-MgUser -Filter "userPrincipalName eq '$testUpn'"
+)
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $activeMatches.Count
+0
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $membershipAfterCleanup = @(
+    Get-MgGroupMember -GroupId $group.Id -All |
+    Where-Object { $_.Id -eq $user.Id }
+)
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $membershipAfterCleanup.Count
+0
+PS /Users/rifat/Documents/sunhaven-workforce-iam> [PSCustomObject]@{
+    ActiveUsersWithTestUPN = $activeMatches.Count
+    RemainingGroupMemberships = $membershipAfterCleanup.Count
+    Result = if (
+        $activeMatches.Count -eq 0 -and
+        $membershipAfterCleanup.Count -eq 0
+    ) { "PASS - CLEANUP COMPLETE" } else { "FAIL - REVIEW REQUIRED" }
+}
+
+ActiveUsersWithTestUPN RemainingGroupMemberships Result
+---------------------- ------------------------- ------
+                     0                         0 PASS - CLEANUP COMPLETE
+
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $auditEvents = Get-MgAuditLogDirectoryAudit -Top 100
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $targetAuditEvents = @(
+    $auditEvents |
+    Where-Object {
+        @(
+            $_.TargetResources |
+            Where-Object { $_.Id -eq $user.Id }
+        ).Count -gt 0
+    }
+)
+PS /Users/rifat/Documents/sunhaven-workforce-iam> $targetAuditEvents |
+    Sort-Object ActivityDateTime |
+    Select-Object ActivityDateTime,ActivityDisplayName,Result,Id
+
+ActivityDateTime    ActivityDisplayName      Result  Id
+----------------    -------------------      ------  --
+7/8/2026 4:28:20 pm Update PasswordProfile   success Directory_d1d52bcc-530a-4c43-be02-6d43ed0f32ce_K8ID3_132777256
+7/8/2026 4:28:20 pm Add user                 success Directory_d1d52bcc-530a-4c43-be02-6d43ed0f32ce_K8ID3_132777452
+7/8/2026 4:34:01 pm Add member to group      success Directory_b2053985-afce-4430-b0b1-77650972bdf8_QEIWZ_32233851
+7/8/2026 4:36:06 pm Remove member from group success Directory_fe7e3b34-533f-40b9-b157-ff652ffec615_YZVV8_53902397
+7/8/2026 4:36:25 pm Delete user              success Directory_5a036ac8-5cf0-4540-aaae-744bded99974_V0LT7_82025011
+
+PS /Users/rifat/Documents/sunhaven-workforce-iam> Stop-Transcript
+Transcript stopped, output file is /Users/rifat/Documents/sunhaven-workforce-iam/evidence/phase3/P3-E21_Graph-Test-Transcript-20260808-021925.txt
+PS /Users/rifat/Documents/sunhaven-workforce-iam> Disconnect-MgGraph
+
+ClientId               : 14d82eec-204b-4c2f-b7e8-296a70dab67e
+TenantId               : 72a753ee-6910-4a9b-a36e-e8790da83acb
+Scopes                 : {Group.Read.All, openid, profile, User.Read.All…}
+AuthType               : Delegated
+TokenCredentialType    : InteractiveBrowser
+CertificateThumbprint  : 
+CertificateSubjectName : 
+SendCertificateChain   : False
+Account                : iam.admin@rifat011002gmail.onmicrosoft.com
+LoginHint              : 
+HomeAccountId          : cfc194ca-76bb-47f6-9332-f389d6d34c4d.72a753ee-6910-4a9b-a36e-e8790da83acb
+AppName                : Microsoft Graph Command Line Tools
+ContextScope           : Process
+Certificate            : 
+PSHostVersion          : 7.6.4
+ManagedIdentityId      : 
+ClientSecret           : [REDACTED DURING TC-013 SECURITY REVIEW]
+Environment            : Global
+WamEnabled             : True
+
+PS /Users/rifat/Documents/sunhaven-workforce-iam> Get-MgContext
+PS /Users/rifat/Documents/sunhaven-workforce-iam> exit
+**********************
+PowerShell transcript end
+End time: 20260808024000
+**********************
