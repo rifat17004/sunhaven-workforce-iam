@@ -105,3 +105,7 @@ venv.bak/
 
 # flask session files
 flask_session/
+# Local runtime database
+instance/
+*.db
+*.sqlite3

@@ -1,0 +1,9 @@
+Sunhaven TEST database validation
+---------------------------------
+Database location: /Users/rifat/Documents/sunhaven-workforce-iam/app/instance/sunhaven.db
+Application tables: app_audit_events, assignments, care_notes, residents
+Residents: 5
+Assignments: 0
+Care notes: 0
+Audit events: 0
+All resident names contain TEST: True
