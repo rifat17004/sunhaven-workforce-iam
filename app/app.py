@@ -1,19 +1,36 @@
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from functools import wraps
 
 import requests
-from flask import Flask, abort, render_template, request
+from flask import Flask, abort, render_template, request, session
 from identity.flask import Auth
 
 import app_config
-from database import get_connection, initialize_database
+
+from database import (
+    get_connection,
+    initialize_database,
+    is_user_blocked,
+)
 
 
 __version__ = "0.9.0"
 
 app = Flask(__name__)
 app.config.from_object(app_config)
+
+SESSION_TIMEOUT_MINUTES = 15
+SESSION_STARTED_AT_KEY = "sunhaven_session_started_at"
+
+app.config.update(
+    PERMANENT_SESSION_LIFETIME=timedelta(
+        minutes=SESSION_TIMEOUT_MINUTES
+    ),
+    SESSION_REFRESH_EACH_REQUEST=False,
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Lax",
+)
 
 auth = Auth(
     app,
@@ -76,6 +93,113 @@ def write_audit_event(identity, action, object_id, result):
         )
 
 
+def require_active_session(view_function):
+    """Reject blocked users and expired local application sessions."""
+
+    @wraps(view_function)
+    def wrapped(*args, **kwargs):
+        context = kwargs.get("context") or {}
+        identity = identity_from_context(context)
+        user_object_id = identity["object_id"]
+
+        if not user_object_id:
+            write_audit_event(
+                identity,
+                action=f"ACCESS {request.path}",
+                object_id=request.path,
+                result="DENY: missing Entra Object ID",
+            )
+
+            session.clear()
+
+            abort(
+                403,
+                description=(
+                    "Access was denied because the validated identity "
+                    "did not contain an Entra Object ID."
+                ),
+            )
+
+        if is_user_blocked(user_object_id):
+            write_audit_event(
+                identity,
+                action=f"ACCESS {request.path}",
+                object_id=user_object_id,
+                result="DENY: local application block",
+            )
+
+            session.clear()
+
+            abort(
+                403,
+                description=(
+                    "This user's local application access has been "
+                    "blocked by the leaver-control process."
+                ),
+            )
+
+        session.permanent = True
+
+        current_time = datetime.now(timezone.utc)
+        session_started_at = session.get(SESSION_STARTED_AT_KEY)
+
+        if not session_started_at:
+            session[SESSION_STARTED_AT_KEY] = current_time.isoformat()
+
+        else:
+            try:
+                started_time = datetime.fromisoformat(session_started_at)
+
+                if started_time.tzinfo is None:
+                    started_time = started_time.replace(
+                        tzinfo=timezone.utc
+                    )
+
+            except (TypeError, ValueError):
+                write_audit_event(
+                    identity,
+                    action=f"ACCESS {request.path}",
+                    object_id=user_object_id,
+                    result="DENY: invalid local session timestamp",
+                )
+
+                session.clear()
+
+                abort(
+                    403,
+                    description=(
+                        "The local application session was invalid. "
+                        "Please sign in again."
+                    ),
+                )
+
+            session_age = current_time - started_time
+
+            if session_age >= timedelta(
+                minutes=SESSION_TIMEOUT_MINUTES
+            ):
+                write_audit_event(
+                    identity,
+                    action=f"ACCESS {request.path}",
+                    object_id=user_object_id,
+                    result="DENY: local session expired",
+                )
+
+                session.clear()
+
+                abort(
+                    403,
+                    description=(
+                        "The local application session expired after "
+                        f"{SESSION_TIMEOUT_MINUTES} minutes."
+                    ),
+                )
+
+        return view_function(*args, **kwargs)
+
+    return wrapped
+
+
 def require_roles(*allowed_roles):
     """Permit the request only when an Entra role claim matches."""
 
@@ -94,7 +218,14 @@ def require_roles(*allowed_roles):
                     object_id=request.path,
                     result="DENY: missing oid claim",
                 )
-                abort(403)
+
+                abort(
+                    403,
+                    description=(
+                        "Access was denied because the identity did not "
+                        "contain a valid Entra Object ID."
+                    ),
+                )
 
             if not identity["roles"].intersection(allowed_role_set):
                 write_audit_event(
@@ -103,7 +234,14 @@ def require_roles(*allowed_roles):
                     object_id=request.path,
                     result="DENY: role not permitted",
                 )
-                abort(403)
+
+                abort(
+                    403,
+                    description=(
+                        "You authenticated successfully, but your Entra "
+                        "application role cannot access this resource."
+                    ),
+                )
 
             return view_function(*args, **kwargs)
 
@@ -114,6 +252,7 @@ def require_roles(*allowed_roles):
 
 @app.route("/")
 @auth.login_required
+@require_active_session
 def index(*, context):
     return render_template(
         "index.html",
@@ -126,6 +265,7 @@ def index(*, context):
 
 @app.route("/whoami")
 @auth.login_required
+@require_active_session
 def whoami(*, context):
     identity = identity_from_context(context)
 
@@ -139,6 +279,7 @@ def whoami(*, context):
 
 @app.route("/residents")
 @auth.login_required
+@require_active_session
 @require_roles("CareWorker", "Nurse", "Manager", "AgencyWorker")
 def residents(*, context):
     identity = identity_from_context(context)
@@ -153,6 +294,7 @@ def residents(*, context):
                 ORDER BY resident_id
                 """
             ).fetchall()
+
         else:
             rows = connection.execute(
                 """
@@ -191,6 +333,7 @@ def residents(*, context):
 
 @app.route("/care-notes")
 @auth.login_required
+@require_active_session
 @require_roles("CareWorker", "Nurse", "Manager", "AgencyWorker")
 def care_notes(*, context):
     identity = identity_from_context(context)
@@ -212,6 +355,7 @@ def care_notes(*, context):
 
 @app.route("/clinical")
 @auth.login_required
+@require_active_session
 @require_roles("Nurse", "Manager")
 def clinical(*, context):
     identity = identity_from_context(context)
@@ -233,6 +377,7 @@ def clinical(*, context):
 
 @app.route("/review")
 @auth.login_required
+@require_active_session
 @require_roles("Manager")
 def review(*, context):
     identity = identity_from_context(context)
@@ -254,6 +399,7 @@ def review(*, context):
 
 @app.route("/app-audit")
 @auth.login_required
+@require_active_session
 @require_roles("Manager", "Auditor")
 def app_audit(*, context):
     identity = identity_from_context(context)
@@ -290,6 +436,7 @@ def app_audit(*, context):
 
 @app.route("/call_api")
 @auth.login_required(scopes=os.getenv("SCOPE", "").split())
+@require_active_session
 def call_downstream_api(*, context):
     api_result = (
         requests.get(
@@ -311,11 +458,18 @@ def call_downstream_api(*, context):
 
 
 @app.errorhandler(403)
-def access_denied(_error):
+def access_denied(error):
+    denial_reason = getattr(
+        error,
+        "description",
+        "The application denied access to this resource.",
+    )
+
     return (
         render_template(
             "403.html",
             requested_path=request.path,
+            denial_reason=denial_reason,
         ),
         403,
     )

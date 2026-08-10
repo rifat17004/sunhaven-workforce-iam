@@ -1,0 +1,10 @@
+{'event_id': 29, 'user_object_id': 'LOCAL-IAM-ADMIN', 'action': 'BLOCK_LOCAL_APP_USER', 'object_id': '24078780-828d-4675-9864-be92782e05cd', 'event_time': '2026-08-10T16:39:20.185463+00:00', 'result': 'ALLOW'}
+{'event_id': 28, 'user_object_id': '24078780-828d-4675-9864-be92782e05cd', 'action': 'READ_RESIDENT_LIST', 'object_id': 'residents', 'event_time': '2026-08-10T16:36:41.834082+00:00', 'result': 'ALLOW'}
+{'event_id': 27, 'user_object_id': 'LOCAL-IAM-ADMIN', 'action': 'UNBLOCK_LOCAL_APP_USER', 'object_id': '24078780-828d-4675-9864-be92782e05cd', 'event_time': '2026-08-10T16:36:35.195946+00:00', 'result': 'ALLOW'}
+{'event_id': 26, 'user_object_id': '24078780-828d-4675-9864-be92782e05cd', 'action': 'ACCESS /residents', 'object_id': '24078780-828d-4675-9864-be92782e05cd', 'event_time': '2026-08-10T16:32:34.060202+00:00', 'result': 'DENY: local application block'}
+{'event_id': 24, 'user_object_id': '24078780-828d-4675-9864-be92782e05cd', 'action': 'READ_RESIDENT_LIST', 'object_id': 'residents', 'event_time': '2026-08-10T16:20:24.164775+00:00', 'result': 'ALLOW'}
+{'event_id': 23, 'user_object_id': '24078780-828d-4675-9864-be92782e05cd', 'action': 'READ_RESIDENT_LIST', 'object_id': 'residents', 'event_time': '2026-08-10T16:20:23.932217+00:00', 'result': 'ALLOW'}
+{'event_id': 22, 'user_object_id': '24078780-828d-4675-9864-be92782e05cd', 'action': 'READ_RESIDENT_LIST', 'object_id': 'residents', 'event_time': '2026-08-10T16:20:23.589814+00:00', 'result': 'ALLOW'}
+{'event_id': 21, 'user_object_id': '24078780-828d-4675-9864-be92782e05cd', 'action': 'READ_RESIDENT_LIST', 'object_id': 'residents', 'event_time': '2026-08-10T16:20:22.532240+00:00', 'result': 'ALLOW'}
+{'event_id': 20, 'user_object_id': '24078780-828d-4675-9864-be92782e05cd', 'action': 'READ_RESIDENT_LIST', 'object_id': 'residents', 'event_time': '2026-08-10T16:20:13.881859+00:00', 'result': 'ALLOW'}
+{'event_id': 19, 'user_object_id': 'LOCAL-IAM-ADMIN', 'action': 'BLOCK_LOCAL_APP_USER', 'object_id': '24078780-828d-4675-9864-be92782e05cd', 'event_time': '2026-08-10T16:19:29.819757+00:00', 'result': 'ALLOW'}

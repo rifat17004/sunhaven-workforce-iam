@@ -30,10 +30,7 @@
 
       <h2>HTTP 403 Forbidden</h2>
 
-      <p>
-        You successfully authenticated, but your assigned Entra role is not
-        authorized to open this resource.
-      </p>
+      <p>{{ denial_reason }}</p>
 
       <p><strong>Requested route:</strong> {{ requested_path }}</p>
 
