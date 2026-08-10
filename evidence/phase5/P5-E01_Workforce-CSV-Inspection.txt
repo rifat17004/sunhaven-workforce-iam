@@ -1,0 +1,14 @@
+Phase 5 workforce CSV inspection
+--------------------------------
+Path: /Users/rifat/Documents/sunhaven-workforce-iam/data/workforce.csv
+Columns: ['employeeId', 'displayName', 'mailAlias', 'jobRole', 'facility', 'status', 'startDate', 'endDate']
+Expected columns present: True
+Record count: 4
+
+Duplicate employeeId values: False
+Duplicate mailAlias values: False
+
+Row 2: SC1001 | Mia Carter (TEST) | CareWorker | Active
+Row 3: SC1002 | Noah Singh (TEST) | Nurse | Active
+Row 4: SC1004 | Liam Brooks (TEST) | AgencyWorker | Active
+Row 5: SC1006 | Ethan Khan (TEST) | CareWorker | Leaving
