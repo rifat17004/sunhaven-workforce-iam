@@ -1,0 +1,6 @@
+Step: 4.5C - Before Entra disable
+TimestampUTC: 2026-08-10T17:14:39.1936830Z
+DisplayName: Test CareWorker 01
+UserPrincipalName: test.careworker01@rifat011002gmail.onmicrosoft.com
+ObjectId: 24078780-828d-4675-9864-be92782e05cd
+AccountEnabled: True

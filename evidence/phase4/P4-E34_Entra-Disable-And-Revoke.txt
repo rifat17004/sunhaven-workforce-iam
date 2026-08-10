@@ -1,0 +1,7 @@
+Step: 4.5C - Entra disable and session revocation
+TimestampUTC: 2026-08-10T17:25:06.7756630Z
+DisplayName: Test CareWorker 01
+UserPrincipalName: test.careworker01@rifat011002gmail.onmicrosoft.com
+ObjectId: 24078780-828d-4675-9864-be92782e05cd
+AccountEnabled: False
+SessionRevocationResult: Microsoft.Graph.PowerShell.Models.ComponentsMwc6EoResponsesRevokesigninsessionsresponseContentApplicationJsonSchema

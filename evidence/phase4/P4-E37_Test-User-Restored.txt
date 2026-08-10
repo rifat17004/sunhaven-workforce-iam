@@ -1,0 +1,10 @@
+Step: 4.5C - Test identity restoration
+TimestampUTC: 2026-08-10T17:29:25.3712500Z
+DisplayName: Test CareWorker 01
+UserPrincipalName: test.careworker01@rifat011002gmail.onmicrosoft.com
+ObjectId: 24078780-828d-4675-9864-be92782e05cd
+AccountEnabled: True
+Local unblock completed: False
+None
+Local unblock completed: True
+{'user_object_id': '24078780-828d-4675-9864-be92782e05cd', 'blocked_at': '2026-08-10T17:17:50.885665+00:00', 'blocked_by': 'LOCAL-IAM-ADMIN', 'reason': 'Step 4.5C leaver deprovisioning', 'active': 0, 'unblocked_at': '2026-08-10T17:30:15.263883+00:00', 'unblocked_by': 'LOCAL-IAM-ADMIN'}
