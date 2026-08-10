@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from pathlib import Path
 import sqlite3
 
@@ -50,6 +51,17 @@ CREATE TABLE IF NOT EXISTS app_audit_events (
     object_id TEXT,
     event_time TEXT NOT NULL,
     result TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS blocked_users (
+    user_object_id TEXT PRIMARY KEY,
+    blocked_at TEXT NOT NULL,
+    blocked_by TEXT NOT NULL,
+    reason TEXT NOT NULL,
+    active INTEGER NOT NULL DEFAULT 1
+        CHECK (active IN (0, 1)),
+    unblocked_at TEXT,
+    unblocked_by TEXT
 );
 """
 
@@ -118,6 +130,153 @@ def initialize_database():
             """,
             TEST_RESIDENTS,
         )
+
+
+def utc_now():
+    """Return the current time in an unambiguous UTC format."""
+
+    return datetime.now(timezone.utc).isoformat()
+
+
+def block_user(
+    user_object_id,
+    blocked_by="LOCAL-IAM-ADMIN",
+    reason="Leaver access removal",
+):
+    """Block an Entra Object ID from protected application routes."""
+
+    if not user_object_id:
+        raise ValueError("The Entra Object ID cannot be blank.")
+
+    with get_connection() as connection:
+        connection.execute(
+            """
+            INSERT INTO blocked_users (
+                user_object_id,
+                blocked_at,
+                blocked_by,
+                reason,
+                active,
+                unblocked_at,
+                unblocked_by
+            )
+            VALUES (?, ?, ?, ?, 1, NULL, NULL)
+            ON CONFLICT (user_object_id)
+            DO UPDATE SET
+                blocked_at = excluded.blocked_at,
+                blocked_by = excluded.blocked_by,
+                reason = excluded.reason,
+                active = 1,
+                unblocked_at = NULL,
+                unblocked_by = NULL
+            """,
+            (
+                user_object_id,
+                utc_now(),
+                blocked_by,
+                reason,
+            ),
+        )
+
+        connection.execute(
+            """
+            INSERT INTO app_audit_events (
+                user_object_id,
+                action,
+                object_id,
+                event_time,
+                result
+            )
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (
+                blocked_by,
+                "BLOCK_LOCAL_APP_USER",
+                user_object_id,
+                utc_now(),
+                "ALLOW",
+            ),
+        )
+
+
+def unblock_user(
+    user_object_id,
+    unblocked_by="LOCAL-IAM-ADMIN",
+):
+    """Remove a lab application block from an Entra Object ID."""
+
+    with get_connection() as connection:
+        result = connection.execute(
+            """
+            UPDATE blocked_users
+            SET active = 0,
+                unblocked_at = ?,
+                unblocked_by = ?
+            WHERE user_object_id = ?
+              AND active = 1
+            """,
+            (
+                utc_now(),
+                unblocked_by,
+                user_object_id,
+            ),
+        )
+
+        if result.rowcount == 0:
+            return False
+
+        connection.execute(
+            """
+            INSERT INTO app_audit_events (
+                user_object_id,
+                action,
+                object_id,
+                event_time,
+                result
+            )
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (
+                unblocked_by,
+                "UNBLOCK_LOCAL_APP_USER",
+                user_object_id,
+                utc_now(),
+                "ALLOW",
+            ),
+        )
+
+    return True
+
+
+def get_blocked_user(user_object_id):
+    """Return the block record for one Object ID, if it exists."""
+
+    with get_connection() as connection:
+        row = connection.execute(
+            """
+            SELECT
+                user_object_id,
+                blocked_at,
+                blocked_by,
+                reason,
+                active,
+                unblocked_at,
+                unblocked_by
+            FROM blocked_users
+            WHERE user_object_id = ?
+            """,
+            (user_object_id,),
+        ).fetchone()
+
+    return dict(row) if row else None
+
+
+def is_user_blocked(user_object_id):
+    """Return True only when the Object ID has an active block."""
+
+    record = get_blocked_user(user_object_id)
+
+    return bool(record and record["active"] == 1)
 
 
 def print_validation_report():
