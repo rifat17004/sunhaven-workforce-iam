@@ -1,0 +1,9 @@
+Sunhaven workforce input validation
+----------------------------------
+Validator mode: local and read-only
+Microsoft Graph connection: Not used
+Input file: /Users/rifat/Documents/sunhaven-workforce-iam/tests/leaver-sc1008.csv
+Records examined: 1
+Validation errors: 0
+Result: PASS
+Directory changes attempted: No

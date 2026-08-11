@@ -1,0 +1,10 @@
+Sunhaven SC1008 leaver input inspection
+----------------------------------------
+employeeId: SC1008
+displayName: Isabella Green (TEST)
+mailAlias: isabella.green
+jobRole: Nurse
+facility: Sydney
+status: Leaving
+startDate: 2026-08-11
+endDate: 2026-08-12
