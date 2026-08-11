@@ -1,0 +1,10 @@
+Sunhaven Phase 6 UTC event-correlation validation
+------------------------------------------------
+Timeline: ./evidence/phase6/P6-E03_Event-Correlation-Timeline.csv
+Rows: 6
+All timestamps parse correctly: True
+All timestamps use UTC Z format: True
+Events are in chronological order: True
+All required fields are complete: True
+All event outcomes are PASS: True
+Result: PASS
