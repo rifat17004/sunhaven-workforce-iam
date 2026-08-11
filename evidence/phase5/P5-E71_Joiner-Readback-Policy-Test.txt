@@ -1,0 +1,7 @@
+Controlled desired-state readback is pending. Attempt 1 of 4.
+Controlled desired-state readback is pending. Attempt 2 of 4.
+Controlled desired-state readback: PASS
+Attempts observed: 3
+Graph connection used: False
+Write operations executed: 0
+Overall readback-policy result: PASS

@@ -154,6 +154,89 @@ function New-CryptographicPassword {
 }
 
 
+function Get-GraphStatusCode {
+    param(
+        [Parameter(Mandatory = $true)]
+        [System.Management.Automation.ErrorRecord]$ErrorRecord
+    )
+
+    $exception = $ErrorRecord.Exception
+    $candidateValues =
+        [System.Collections.Generic.List[object]]::new()
+
+    foreach ($propertyName in @(
+        "ResponseStatusCode",
+        "StatusCode"
+    )) {
+        $property = $exception.PSObject.Properties[$propertyName]
+
+        if ($property -and $null -ne $property.Value) {
+            [void]$candidateValues.Add($property.Value)
+        }
+    }
+
+    $responseProperty =
+        $exception.PSObject.Properties["Response"]
+
+    if ($responseProperty -and $responseProperty.Value) {
+        $statusProperty =
+            $responseProperty.Value.PSObject.Properties["StatusCode"]
+
+        if ($statusProperty -and $null -ne $statusProperty.Value) {
+            [void]$candidateValues.Add($statusProperty.Value)
+        }
+    }
+
+    foreach ($candidateValue in $candidateValues) {
+        try {
+            return [int]$candidateValue
+        }
+        catch {
+            continue
+        }
+    }
+
+    return $null
+}
+
+
+function Test-IsTransientGraphError {
+    param(
+        [Parameter(Mandatory = $true)]
+        [System.Management.Automation.ErrorRecord]$ErrorRecord
+    )
+
+    $statusCode = Get-GraphStatusCode -ErrorRecord $ErrorRecord
+
+    if ($statusCode -in @(408, 429, 500, 502, 503, 504)) {
+        return $true
+    }
+
+    $message = [string]$ErrorRecord.Exception.Message
+    $transientPatterns = @(
+        '\bHTTP\s*(408|429|500|502|503|504)\b',
+        '\bstatus(?:\s+code)?\s*[:=]?\s*' +
+            '(408|429|500|502|503|504)\b',
+        '\btoo many requests\b',
+        '\bthrottl',
+        '\btemporar(?:y|ily) unavailable\b',
+        '\bservice unavailable\b',
+        '\bbad gateway\b',
+        '\bgateway timeout\b',
+        '\brequest timed out\b',
+        '\bconnection (?:reset|closed)\b'
+    )
+
+    foreach ($pattern in $transientPatterns) {
+        if ($message -match $pattern) {
+            return $true
+        }
+    }
+
+    return $false
+}
+
+
 function Invoke-WithRetry {
     param(
         [Parameter(Mandatory = $true)]
@@ -176,18 +259,95 @@ function Invoke-WithRetry {
             return & $Operation
         }
         catch {
+            $isTransient =
+                Test-IsTransientGraphError -ErrorRecord $_
+
+            if (-not $isTransient) {
+                Write-Host (
+                    "$Description failed with a non-transient error. " +
+                    "No retry will be attempted."
+                ) -ForegroundColor Red
+
+                throw
+            }
+
             if ($attempt -eq $MaximumAttempts) {
                 throw
             }
 
+            $retryDelaySeconds = $DelaySeconds * $attempt
+
             Write-Host (
-                "$Description was not ready. " +
-                "Retry $attempt of $MaximumAttempts..."
+                "$Description returned a transient Graph error. " +
+                "Retry $attempt of $($MaximumAttempts - 1) " +
+                "in $retryDelaySeconds seconds..."
+            ) -ForegroundColor Yellow
+
+            Start-Sleep -Seconds $retryDelaySeconds
+        }
+    }
+}
+
+
+function Wait-ForDesiredState {
+    param(
+        [Parameter(Mandatory = $true)]
+        [scriptblock]$Readback,
+
+        [Parameter(Mandatory = $true)]
+        [string]$Description,
+
+        [int]$MaximumAttempts = 6,
+
+        [int]$DelaySeconds = 3,
+
+        [switch]$NotFoundMeansPending
+    )
+
+    for (
+        $attempt = 1;
+        $attempt -le $MaximumAttempts;
+        $attempt++
+    ) {
+        $desiredStateReached = $false
+
+        try {
+            $desiredStateReached = [bool](& $Readback)
+        }
+        catch {
+            $statusCode = Get-GraphStatusCode -ErrorRecord $_
+            $message = [string]$_.Exception.Message
+            $pendingNotFound = (
+                $NotFoundMeansPending -and
+                (
+                    $statusCode -eq 404 -or
+                    $message -match '\bHTTP\s*404\b' -or
+                    $message -match '\bnot found\b'
+                )
+            )
+
+            if (-not $pendingNotFound) {
+                throw
+            }
+        }
+
+        if ($desiredStateReached) {
+            Write-Host "$Description readback: PASS"
+            return $true
+        }
+
+        if ($attempt -lt $MaximumAttempts) {
+            Write-Host (
+                "$Description readback is pending. " +
+                "Attempt $attempt of $MaximumAttempts."
             ) -ForegroundColor Yellow
 
             Start-Sleep -Seconds $DelaySeconds
         }
     }
+
+    Write-Host "$Description readback: FAIL" -ForegroundColor Red
+    return $false
 }
 
 
@@ -852,6 +1012,31 @@ try {
 
         Write-Host "Created user Object ID: $createdUserId"
 
+        $userReadbackVerified = Wait-ForDesiredState `
+            -Description "Created user" `
+            -NotFoundMeansPending `
+            -Readback {
+                $readbackUser = Get-MgUser `
+                    -UserId $createdUserId `
+                    -Property @(
+                        "id",
+                        "accountEnabled",
+                        "employeeId",
+                        "userPrincipalName"
+                    )
+
+                return (
+                    [string]$readbackUser.Id -eq $createdUserId -and
+                    [bool]$readbackUser.AccountEnabled -and
+                    [string]$readbackUser.EmployeeId -eq $EmployeeId -and
+                    [string]$readbackUser.UserPrincipalName -eq $expectedUpn
+                )
+            }
+
+        if (-not $userReadbackVerified) {
+            throw "Created user readback verification failed."
+        }
+
         Invoke-WithRetry `
             -Description "Group membership assignment" `
             -Operation {
@@ -868,6 +1053,25 @@ try {
             "Added group: $expectedGroupName"
         )
 
+        $groupReadbackVerified = Wait-ForDesiredState `
+            -Description "Group membership" `
+            -Readback {
+                $readbackMemberIds = @(
+                    Get-MgGroupMember `
+                        -GroupId $targetGroupId `
+                        -All |
+                        ForEach-Object {
+                            [string]$_.Id
+                        }
+                )
+
+                return ($createdUserId -in $readbackMemberIds)
+            }
+
+        if (-not $groupReadbackVerified) {
+            throw "Group membership readback verification failed."
+        }
+
         Invoke-WithRetry `
             -Description "Application role assignment" `
             -Operation {
@@ -880,6 +1084,29 @@ try {
             }
 
         Write-Host "Assigned application role: $jobRole"
+
+        $appRoleReadbackVerified = Wait-ForDesiredState `
+            -Description "Application role" `
+            -Readback {
+                $readbackAssignments = @(
+                    Get-MgUserAppRoleAssignment `
+                        -UserId $createdUserId `
+                        -All
+                )
+
+                return @(
+                    $readbackAssignments |
+                        Where-Object {
+                            [string]$_.ResourceId -eq
+                                [string]$servicePrincipal.Id -and
+                            [string]$_.AppRoleId -eq $targetAppRoleId
+                        }
+                ).Count -eq 1
+            }
+
+        if (-not $appRoleReadbackVerified) {
+            throw "Application role readback verification failed."
+        }
 
         Write-Host ""
         Write-Host "STEP 6 - Verify final desired state" `

@@ -264,6 +264,54 @@ function Get-LiveLeaverState {
     }
 }
 
+
+function Wait-ForLeaverState {
+    param(
+        [Parameter(Mandatory = $true)]
+        [scriptblock]$Condition,
+
+        [Parameter(Mandatory = $true)]
+        [string]$Description,
+
+        [Parameter(Mandatory = $true)]
+        [object]$GroupMap,
+
+        [Parameter(Mandatory = $true)]
+        [object]$ServicePrincipal,
+
+        [int]$MaximumAttempts = 6,
+
+        [int]$DelaySeconds = 3
+    )
+
+    for (
+        $attempt = 1;
+        $attempt -le $MaximumAttempts;
+        $attempt++
+    ) {
+        $readbackState = Get-LiveLeaverState `
+            -GroupMap $GroupMap `
+            -ServicePrincipal $ServicePrincipal
+
+        if ([bool](& $Condition $readbackState)) {
+            Write-Host "$Description readback: PASS"
+            return $readbackState
+        }
+
+        if ($attempt -lt $MaximumAttempts) {
+            Write-Host (
+                "$Description readback is pending. " +
+                "Attempt $attempt of $MaximumAttempts."
+            ) -ForegroundColor Yellow
+
+            Start-Sleep -Seconds $DelaySeconds
+        }
+    }
+
+    throw "$Description readback verification failed."
+}
+
+
 function Save-SanitizedResult {
     param(
         [Parameter(Mandatory = $true)]
@@ -679,6 +727,16 @@ try {
         $script:writeOperations++
         $script:actionsCompleted.Add("DISABLE_ACCOUNT")
 
+        $null = Wait-ForLeaverState `
+            -Description "Account disable" `
+            -GroupMap $groupMap `
+            -ServicePrincipal $servicePrincipal `
+            -Condition {
+                param($state)
+
+                return $state.User.AccountEnabled -eq $false
+            }
+
         Add-ActionResult `
             -Name "DisableAccount" `
             -Result "SUCCESS" `
@@ -719,6 +777,25 @@ try {
             "REMOVE_GROUP:$($membership.GroupName)"
         )
 
+        $removedGroupName = [string]$membership.GroupName
+
+        $null = Wait-ForLeaverState `
+            -Description "Governed group removal" `
+            -GroupMap $groupMap `
+            -ServicePrincipal $servicePrincipal `
+            -Condition {
+                param($state)
+
+                $remainingGroupNames = @(
+                    $state.ManagedGroups |
+                        ForEach-Object {
+                            [string]$_.GroupName
+                        }
+                )
+
+                return $removedGroupName -notin $remainingGroupNames
+            }
+
         Add-ActionResult `
             -Name "RemoveGovernedGroup" `
             -Result "SUCCESS" `
@@ -744,6 +821,23 @@ try {
         $script:actionsCompleted.Add(
             "REMOVE_APP_ROLE:$($assignment.AppRoleId)"
         )
+
+        $removedAssignmentId = [string]$assignment.Id
+
+        $null = Wait-ForLeaverState `
+            -Description "Care-app role removal" `
+            -GroupMap $groupMap `
+            -ServicePrincipal $servicePrincipal `
+            -Condition {
+                param($state)
+
+                return @(
+                    $state.CareAssignments |
+                        Where-Object {
+                            [string]$_.Id -eq $removedAssignmentId
+                        }
+                ).Count -eq 0
+            }
 
         Add-ActionResult `
             -Name "RemoveSunhavenAppRole" `

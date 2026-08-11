@@ -452,6 +452,44 @@ try {
         }
     }
 
+    function Wait-ForMoverState {
+        param(
+            [Parameter(Mandatory = $true)]
+            [scriptblock]$Condition,
+
+            [Parameter(Mandatory = $true)]
+            [string]$Description,
+
+            [int]$MaximumAttempts = 6,
+
+            [int]$DelaySeconds = 3
+        )
+
+        for (
+            $attempt = 1;
+            $attempt -le $MaximumAttempts;
+            $attempt++
+        ) {
+            $readbackState = Get-LiveMoverState
+
+            if ([bool](& $Condition $readbackState)) {
+                Write-Host "$Description readback: PASS"
+                return $readbackState
+            }
+
+            if ($attempt -lt $MaximumAttempts) {
+                Write-Host (
+                    "$Description readback is pending. " +
+                    "Attempt $attempt of $MaximumAttempts."
+                ) -ForegroundColor Yellow
+
+                Start-Sleep -Seconds $DelaySeconds
+            }
+        }
+
+        throw "$Description readback verification failed."
+    }
+
     $initialState = Get-LiveMoverState
 
     $alreadyDesired = (
@@ -540,6 +578,14 @@ try {
     $script:writeOperations++
     $script:actionsCompleted.Add("REMOVE_OLD_APP_ROLE")
 
+    $null = Wait-ForMoverState `
+        -Description "Old application role removal" `
+        -Condition {
+            param($state)
+
+            return $state.OldRoleAssignments.Count -eq 0
+        }
+
     Remove-MgGroupMemberByRef `
         -GroupId $oldGroupId `
         -DirectoryObjectId $script:userId `
@@ -547,6 +593,14 @@ try {
 
     $script:writeOperations++
     $script:actionsCompleted.Add("REMOVE_OLD_GROUP")
+
+    $null = Wait-ForMoverState `
+        -Description "Old group removal" `
+        -Condition {
+            param($state)
+
+            return -not $state.OldGroupPresent
+        }
 
     Update-MgUser `
         -UserId $script:userId `
@@ -558,6 +612,14 @@ try {
 
     $script:writeOperations++
     $script:actionsCompleted.Add("UPDATE_USER_ATTRIBUTES")
+
+    $null = Wait-ForMoverState `
+        -Description "User attribute update" `
+        -Condition {
+            param($state)
+
+            return $state.AttributesVerified
+        }
 
     New-MgGroupMemberByRef `
         -GroupId $newGroupId `
@@ -572,6 +634,14 @@ try {
     $script:writeOperations++
     $script:actionsCompleted.Add("ADD_NEW_GROUP")
 
+    $null = Wait-ForMoverState `
+        -Description "New group assignment" `
+        -Condition {
+            param($state)
+
+            return $state.NewGroupPresent
+        }
+
     $newRoleAssignment = New-MgUserAppRoleAssignment `
         -UserId $script:userId `
         -BodyParameter @{
@@ -582,6 +652,17 @@ try {
 
     $script:writeOperations++
     $script:actionsCompleted.Add("ADD_NEW_APP_ROLE")
+
+    $null = Wait-ForMoverState `
+        -Description "New application role assignment" `
+        -Condition {
+            param($state)
+
+            return (
+                $state.NewRoleAssignments.Count -eq 1 -and
+                $state.CareAssignments.Count -eq 1
+            )
+        }
 
     $null = Revoke-MgUserSignInSession `
         -UserId $script:userId `

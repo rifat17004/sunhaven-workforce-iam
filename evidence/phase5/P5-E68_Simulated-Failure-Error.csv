@@ -1,0 +1,2 @@
+"TestId","Result","ErrorClass","Attempts","WriteOperationsExecuted","ExpectedExitCode","SecretsRecorded","SanitizedMessage"
+"SAFE-FAIL-001","ERROR","NON_TRANSIENT_AUTHORIZATION","1","0","1","False","Simulated HTTP 403 stopped without retry."

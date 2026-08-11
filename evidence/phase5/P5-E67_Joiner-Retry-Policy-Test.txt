@@ -1,0 +1,5 @@
+HTTP 429 is transient: PASS
+HTTP 503 is transient: PASS
+HTTP 403 is not transient: PASS
+Validation failure is not transient: PASS
+Overall retry-policy result: PASS

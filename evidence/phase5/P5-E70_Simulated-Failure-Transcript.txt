@@ -1,0 +1,17 @@
+Controlled authorization failure failed with a non-transient error. No retry will be attempted.
+Sunhaven controlled Joiner failure test
+----------------------------------------
+Test ID: SAFE-FAIL-001
+Failure type: simulated HTTP 403
+Expected classification: non-transient
+Attempts observed: 1
+Write operations executed: 0
+Structured result: ERROR
+Expected process exit code: 1
+Secrets recorded: False
+Graph connection used: False
+Entra directory changes attempted: False
+Overall controlled-failure result: 
+PASS
+Observed process exit code: 1
+Controlled non-zero exit: PASS

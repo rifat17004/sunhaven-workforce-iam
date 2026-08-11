@@ -1,0 +1,13 @@
+PASS: Mover readback helper
+PASS: Mover old app-role readback
+PASS: Mover old-group readback
+PASS: Mover attribute readback
+PASS: Mover new-group readback
+PASS: Mover new app-role readback
+PASS: Leaver readback helper
+PASS: Leaver account-disable readback
+PASS: Leaver group-removal readback
+PASS: Leaver app-role readback
+Microsoft Graph connection: Not used
+Write operations executed: 0
+Result: PASS
