@@ -1,0 +1,2 @@
+"EmployeeId","DisplayName","JobRole","Facility","WorkforceStatus","EndDate","ExpectedUPN","ExpectedGroup","EntraObjectId","CurrentUPN","CurrentAccountEnabled","Action","Changes","Reason"
+"SC1008","Isabella Green (TEST)","CareWorker","Sydney","Active","","isabella.green@rifat011002gmail.onmicrosoft.com","SG-SC-CareWorkers","42460e61-afc4-4bf5-bad5-c0f4b5cb0c15","isabella.green@rifat011002gmail.onmicrosoft.com","True","NO CHANGE","","The Entra user already matches the workforce identity attributes."

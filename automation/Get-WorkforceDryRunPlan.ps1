@@ -117,6 +117,7 @@ function ConvertTo-ComparisonText {
 function Add-AttributeChange {
     param(
         [Parameter(Mandatory = $true)]
+        [AllowEmptyCollection()]
         [System.Collections.Generic.List[string]]$ChangeList,
 
         [Parameter(Mandatory = $true)]
