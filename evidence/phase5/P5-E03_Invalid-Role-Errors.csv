@@ -1,0 +1,2 @@
+"RowNumber","EmployeeId","Field","ErrorCode","Message"
+"2","SC9001","jobRole","INVALID_JOB_ROLE","Role 'GlobalAdministrator' is not approved. Allowed roles: CareWorker, Nurse, Manager, AgencyWorker, Auditor"

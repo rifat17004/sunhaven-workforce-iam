@@ -1,0 +1,2 @@
+"RowNumber","EmployeeId","Field","ErrorCode","Message"
+"2","SC9005","endDate","END_DATE_REQUIRED","endDate is required for AgencyWorker or Leaving records."
