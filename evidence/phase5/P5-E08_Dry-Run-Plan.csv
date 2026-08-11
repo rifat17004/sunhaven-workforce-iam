@@ -1,0 +1,5 @@
+"EmployeeId","DisplayName","JobRole","Facility","WorkforceStatus","EndDate","ExpectedUPN","ExpectedGroup","EntraObjectId","CurrentUPN","CurrentAccountEnabled","Action","Changes","Reason"
+"SC1001","Mia Carter (TEST)","CareWorker","Sydney","Active","","mia.carter@rifat011002gmail.onmicrosoft.com","SG-SC-CareWorkers","","","","CREATE","","No Entra user matched the employeeId or expected UPN."
+"SC1002","Noah Singh (TEST)","Nurse","Sydney","Active","","noah.singh@rifat011002gmail.onmicrosoft.com","SG-SC-Nurses","","","","CREATE","","No Entra user matched the employeeId or expected UPN."
+"SC1004","Liam Brooks (TEST)","AgencyWorker","Sydney","Active","2026-08-20","liam.brooks@rifat011002gmail.onmicrosoft.com","SG-SC-AgencyWorkers","","","","CREATE","","No Entra user matched the employeeId or expected UPN."
+"SC1006","Ethan Khan (TEST)","CareWorker","Sydney","Leaving","2026-08-05","ethan.khan@rifat011002gmail.onmicrosoft.com","SG-SC-CareWorkers","","","","NO CHANGE","","No Entra account exists and this workforce record does not permit active access."
