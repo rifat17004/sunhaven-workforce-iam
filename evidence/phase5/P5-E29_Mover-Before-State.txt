@@ -1,0 +1,17 @@
+Sunhaven worker access-state export
+-----------------------------------
+Captured UTC: 2026-08-11T14:28:43.5436630Z
+Tenant ID: 72a753ee-6910-4a9b-a36e-e8790da83acb
+Authenticated account: iam.admin@rifat011002gmail.onmicrosoft.com
+Employee ID: SC1008
+Display name: Isabella Green (TEST)
+UPN: isabella.green@rifat011002gmail.onmicrosoft.com
+Object ID: 42460e61-afc4-4bf5-bad5-c0f4b5cb0c15
+Account enabled: True
+Job title: CareWorker
+Department: Sydney
+Facility: Sydney
+Governed groups: SG-SC-CareWorkers
+Care-app roles: CareWorker
+Write operations executed: 0
+Result: PASS
