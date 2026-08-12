@@ -1,0 +1,12 @@
+Sunhaven Phase 7 pre-test baseline
+-----------------------------------
+Captured UTC: 2026-08-12T17:06:38Z
+Repository: sunhaven-workforce-iam
+Branch: main
+Commit ID: d7dec8f0c5660b86b04e377d1f595d478f13967a
+Commit description: d7dec8f Document optional Access Reviews licensing limitation
+Working tree before evidence creation: CLEAN
+Lifecycle TEST user SC1008 final state: LEAVER / DISABLED
+Native Access Reviews: NOT LICENSED
+Manual access-review validation: PASS
+Phase 7 release tag created: NO - created only after all tests pass

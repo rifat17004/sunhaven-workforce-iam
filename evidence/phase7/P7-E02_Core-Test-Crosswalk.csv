@@ -1,0 +1,15 @@
+CoreTestID,HandbookTest,ExistingTestIDs,RequirementID,ExpectedResult,HistoricalEvidence,ActualResult,FinalEvidenceID,Status
+TC-001,Valid CareWorker joiner,T18; T21; T16,REQ-JOINER; REQ-RBAC; REQ-AUTH,"One enabled identity, one intended role and an MFA registration path",P5-E16; P5-E20; P5-E21; P5-E22; P5-E23,,,NOT RUN
+TC-002,Repeat TC-001 input,T22,REQ-JOINER,NO CHANGE; no duplicate identity or assignment,P5-E26; P5-E27; P5-E28,,,NOT RUN
+TC-003,CareWorker assigned resident,T01; T21,REQ-RBAC,Assigned resident access is allowed with HTTP 200,P5-E23,,,NOT RUN
+TC-004,CareWorker clinical page,T02,REQ-RBAC,Clinical access is denied with HTTP 403,P5-E24,,,NOT RUN
+TC-005,Nurse clinical page,T03; T23; T24,REQ-RBAC; REQ-MOVER,Clinical access is allowed with HTTP 200,P5-E40; P5-E41,,,NOT RUN
+TC-006,Mover CareWorker to Nurse,T23; T24; T26,REQ-MOVER,"Old role is absent, Nurse role is present and a fresh session is required",P5-E35; P5-E36; P5-E40 to P5-E46,,,NOT RUN
+TC-007,Invalid jobRole input,T19; T25,REQ-JOINER; REQ-MOVER,Invalid row is rejected and no directory change occurs,P5-E03,,,NOT RUN
+TC-008,Duplicate employeeId input,T20,REQ-JOINER,Workflow fails closed and no second identity is created,P5-E04,,,NOT RUN
+TC-009,Agency endDate reached,T08,REQ-LEAVER,Account or access is disabled or flagged according to the approved expiry rule,No conclusive final evidence,,,NOT RUN
+TC-010,Live leaver,T27; T28,REQ-LEAVER,"Account is disabled, sessions revoked, governed access removed and current app request denied",P5-E52 to P5-E59,,,NOT RUN
+TC-011,New sign-in after leaver,T29; T17,REQ-LEAVER; REQ-AUTH,New authentication is blocked,P5-E60; P6-E08,,,NOT RUN
+TC-012,Access-review Deny,T32; T33; T34,REQ-REVIEW,Denied assignment is removed and the protected action is denied,P6-E19 to P6-E29,,,NOT RUN
+TC-013,Secret scan,T37,REQ-PRIVACY,"No password, client secret, token or real resident information is found in staged evidence",Prior Phase 5 and Phase 6 scans; final scan required,,,NOT RUN
+TC-014,Wrong-tenant protection,T12 partial coverage,REQ-SAFETY,Automation displays and validates TenantId before writes and refuses a mismatched tenant,Tenant validation exists; explicit negative guard test required,,,NOT RUN
