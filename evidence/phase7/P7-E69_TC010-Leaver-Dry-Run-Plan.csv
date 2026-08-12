@@ -1,0 +1,2 @@
+"EmployeeId","DisplayName","JobRole","Facility","WorkforceStatus","EndDate","ExpectedUPN","ExpectedGroup","EntraObjectId","CurrentUPN","CurrentAccountEnabled","Action","Changes","Reason"
+"SC1012","Avery Morgan (TEST)","AgencyWorker","Sydney","Leaving","2026-08-13","avery.morgan@rifat011002gmail.onmicrosoft.com","SG-SC-AgencyWorkers","fa9ecd22-9330-46e8-bb2e-b254ec587aec","avery.morgan@rifat011002gmail.onmicrosoft.com","True","DISABLE","accountEnabled: 'True' -> 'False'","The workforce record is Inactive or its endDate has been reached."

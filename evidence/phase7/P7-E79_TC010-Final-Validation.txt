@@ -1,0 +1,14 @@
+Sunhaven TC-010 live-leaver validation
+---------------------------------------
+Employee ID: SC1012
+Workflow outcome: LEAVER APPLIED
+Account disabled: True
+Sessions revoked: True
+Governed groups remaining: 0
+Care-app roles remaining: 0
+Local application blocked: True
+Existing session denial evidence present: True
+Independent post-state valid: True
+Local-block record valid: True
+Workflow validation: True
+Result: PASS

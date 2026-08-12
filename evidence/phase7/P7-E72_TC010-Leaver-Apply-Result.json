@@ -1,0 +1,62 @@
+{
+  "GeneratedUtc": "2026-08-12T19:34:24.8631010Z",
+  "Outcome": "LEAVER APPLIED",
+  "EmployeeId": "SC1012",
+  "UserObjectId": "fa9ecd22-9330-46e8-bb2e-b254ec587aec",
+  "UserPrincipalName": "avery.morgan@rifat011002gmail.onmicrosoft.com",
+  "ExpectedCurrentRole": "AgencyWorker",
+  "AccountDisabled": true,
+  "GovernedGroupsRemaining": [],
+  "CareAppRolesRemaining": 0,
+  "LocalAppBlocked": true,
+  "SessionsRevoked": true,
+  "ActionsCompleted": [
+    "DISABLE_ACCOUNT",
+    "REVOKE_SIGN_IN_SESSIONS",
+    "REMOVE_GROUP:SG-SC-AgencyWorkers",
+    "REMOVE_APP_ROLE:87657786-b67b-4e1f-b46f-d5f1e1c8f545",
+    "BLOCK_LOCAL_APP_SESSION"
+  ],
+  "ActionResults": [
+    {
+      "Name": "DisableAccount",
+      "Result": "SUCCESS",
+      "Details": "accountEnabled changed from True to False.",
+      "TimestampUtc": "2026-08-12T19:34:17.7313540Z"
+    },
+    {
+      "Name": "RevokeSessions",
+      "Result": "SUCCESS",
+      "Details": "Microsoft Graph accepted the revocation request.",
+      "TimestampUtc": "2026-08-12T19:34:17.9523950Z"
+    },
+    {
+      "Name": "RemoveGovernedGroup",
+      "Result": "SUCCESS",
+      "Details": "Removed SG-SC-AgencyWorkers.",
+      "TimestampUtc": "2026-08-12T19:34:18.6198560Z"
+    },
+    {
+      "Name": "RemoveSunhavenAppRole",
+      "Result": "SUCCESS",
+      "Details": "Removed assignment Is2e-jCT6Ea7LrJU7Fh67Iw9x3m5s7ZEklQNaKUCT-c.",
+      "TimestampUtc": "2026-08-12T19:34:19.2451610Z"
+    },
+    {
+      "Name": "BlockLocalAppSession",
+      "Result": "SUCCESS",
+      "Details": "The local Flask application block is active.",
+      "TimestampUtc": "2026-08-12T19:34:19.3316860Z"
+    },
+    {
+      "Name": "VerifyDesiredState",
+      "Result": "SUCCESS",
+      "Details": "Account disabled, sessions revoked, governed access removed and local block active.",
+      "TimestampUtc": "2026-08-12T19:34:24.8576560Z"
+    }
+  ],
+  "WriteOperationsExecuted": 5,
+  "PasswordRecorded": false,
+  "SecretRecorded": false,
+  "ErrorMessage": ""
+}

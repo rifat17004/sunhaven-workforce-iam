@@ -1,0 +1,49 @@
+{
+  "EventId": "JML-20260812193424-SC1012",
+  "EmployeeId": "SC1012",
+  "EntraObjectId": "fa9ecd22-9330-46e8-bb2e-b254ec587aec",
+  "EventType": "LEAVER",
+  "Operator": "iam.admin@rifat011002gmail.onmicrosoft.com",
+  "TimestampUtc": "2026-08-12T19:34:24.8739430Z",
+  "Outcome": "LEAVER APPLIED",
+  "Actions": [
+    {
+      "Name": "DisableAccount",
+      "Result": "SUCCESS",
+      "Details": "accountEnabled changed from True to False.",
+      "TimestampUtc": "2026-08-12T19:34:17.7313540Z"
+    },
+    {
+      "Name": "RevokeSessions",
+      "Result": "SUCCESS",
+      "Details": "Microsoft Graph accepted the revocation request.",
+      "TimestampUtc": "2026-08-12T19:34:17.9523950Z"
+    },
+    {
+      "Name": "RemoveGovernedGroup",
+      "Result": "SUCCESS",
+      "Details": "Removed SG-SC-AgencyWorkers.",
+      "TimestampUtc": "2026-08-12T19:34:18.6198560Z"
+    },
+    {
+      "Name": "RemoveSunhavenAppRole",
+      "Result": "SUCCESS",
+      "Details": "Removed assignment Is2e-jCT6Ea7LrJU7Fh67Iw9x3m5s7ZEklQNaKUCT-c.",
+      "TimestampUtc": "2026-08-12T19:34:19.2451610Z"
+    },
+    {
+      "Name": "BlockLocalAppSession",
+      "Result": "SUCCESS",
+      "Details": "The local Flask application block is active.",
+      "TimestampUtc": "2026-08-12T19:34:19.3316860Z"
+    },
+    {
+      "Name": "VerifyDesiredState",
+      "Result": "SUCCESS",
+      "Details": "Account disabled, sessions revoked, governed access removed and local block active.",
+      "TimestampUtc": "2026-08-12T19:34:24.8576560Z"
+    }
+  ],
+  "ErrorMessage": "",
+  "SecretsRecorded": false
+}

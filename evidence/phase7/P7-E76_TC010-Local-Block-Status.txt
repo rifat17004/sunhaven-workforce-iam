@@ -1,0 +1,7 @@
+Enter operation (status, block or unblock): Paste the TEST user's Entra Object ID: Object ID: fa9ecd22-9330-46e8-bb2e-b254ec587aec
+Active block: True
+Blocked at: 2026-08-12T19:34:19.325522+00:00
+Blocked by: LOCAL-IAM-ADMIN
+Reason: Automated LEAVER for SC1012; endDate 2026-08-13
+Unblocked at: None
+Unblocked by: None

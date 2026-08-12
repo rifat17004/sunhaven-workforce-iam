@@ -1,0 +1,18 @@
+STEP 1 - Disable the Entra account first
+Account disable readback: PASS
+STEP 2 - Revoke Entra sign-in sessions
+STEP 3 - Remove Sunhaven-governed groups
+Governed group removal readback: PASS
+STEP 4 - Remove Sunhaven care-app assignments
+Care-app role removal readback: PASS
+STEP 5 - Block the local care-app session
+STEP 6 - Read back and verify the final state
+Outcome: LEAVER APPLIED
+Employee ID: SC1012
+User Object ID: fa9ecd22-9330-46e8-bb2e-b254ec587aec
+Account disabled: True
+Governed groups remaining: 0
+Care-app assignments remaining: 0
+Local application blocked: True
+Sessions revoked: True
+Write operations executed: 5

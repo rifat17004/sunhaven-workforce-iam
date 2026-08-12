@@ -1,0 +1,19 @@
+Sunhaven Leaver safety check
+-----------------------------
+Mode: SAFE - NO APPLY
+Employee ID: SC1012
+Expected current role: AgencyWorker
+Workforce status: Leaving
+End date: 2026-08-13
+Approved Object ID: fa9ecd22-9330-46e8-bb2e-b254ec587aec
+Dry-run plan action: DISABLE
+Required approval text: LEAVE SC1012
+Planned action order:
+1. Disable the Entra account
+2. Revoke Entra sign-in sessions
+3. Remove all Sunhaven-governed groups
+4. Remove Sunhaven care-app assignments
+5. Block the current local app session
+6. Verify and record the final state
+Write operations executed: 0
+Result: PASS
