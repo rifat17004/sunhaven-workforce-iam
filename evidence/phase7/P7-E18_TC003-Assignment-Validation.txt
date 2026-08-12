@@ -1,0 +1,7 @@
+Sunhaven TC-003 assignment validation
+--------------------------------------
+User Object ID: 9ad319e7-6b32-46ba-8449-74cbc4dc01f8
+Active assignments found: 2
+RES-TEST-001 | Alex Morgan TEST | role=CareWorker | active=True | endDate=None
+RES-TEST-002 | Bailey Taylor TEST | role=CareWorker | active=True | endDate=None
+Result: PASS

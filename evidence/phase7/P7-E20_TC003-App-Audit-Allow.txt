@@ -1,0 +1,9 @@
+Sunhaven TC-003 application-audit validation
+---------------------------------------------
+Event ID: 45
+User Object ID: 9ad319e7-6b32-46ba-8449-74cbc4dc01f8
+Action: READ_RESIDENT_LIST
+Object: residents
+Event time UTC: 2026-08-12T18:19:08.937310+00:00
+Audit result: ALLOW
+Result: PASS
