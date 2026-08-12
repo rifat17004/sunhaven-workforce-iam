@@ -1,0 +1,1 @@
+DefectID,CoreTestID,DetectedUtc,Severity,DefectDescription,ExpectedResult,ActualResult,RootCause,CorrectiveAction,ChangedFiles,OriginalEvidenceID,RetestUtc,RetestEvidenceID,RetestResult,Status
