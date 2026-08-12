@@ -1,0 +1,20 @@
+Sunhaven Mover safety check
+----------------------------
+Mode: SAFE - NO APPLY
+Employee ID: SC1009
+Expected current role: CareWorker
+Target role: Nurse
+Target facility: Sydney
+Old governed group: SG-SC-CareWorkers
+New governed group: SG-SC-Nurses
+Dry-run plan action: UPDATE
+Required approval text: MOVE SC1009 CareWorker TO Nurse
+Planned action order:
+1. Remove old app role
+2. Remove old governed group
+3. Update job and facility attributes
+4. Add new governed group
+5. Add new app role
+6. Revoke sign-in sessions
+Write operations executed: 0
+Result: PASS

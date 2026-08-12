@@ -1,0 +1,2 @@
+"EmployeeId","DisplayName","JobRole","Facility","WorkforceStatus","EndDate","ExpectedUPN","ExpectedGroup","EntraObjectId","CurrentUPN","CurrentAccountEnabled","Action","Changes","Reason"
+"SC1009","Jordan Blake (TEST)","Nurse","Sydney","Active","","jordan.blake@rifat011002gmail.onmicrosoft.com","SG-SC-Nurses","9ad319e7-6b32-46ba-8449-74cbc4dc01f8","jordan.blake@rifat011002gmail.onmicrosoft.com","True","UPDATE","jobTitle: 'CareWorker' -> 'Nurse'","The Entra user exists but one or more attributes differ."

@@ -1,0 +1,22 @@
+{
+  "GeneratedUtc": "2026-08-12T18:53:00.2917570Z",
+  "Outcome": "NO CHANGE",
+  "EmployeeId": "SC1009",
+  "UserObjectId": "9ad319e7-6b32-46ba-8449-74cbc4dc01f8",
+  "UserPrincipalName": "jordan.blake@rifat011002gmail.onmicrosoft.com",
+  "ExpectedCurrentRole": "CareWorker",
+  "TargetRole": "Nurse",
+  "TargetFacility": "Sydney",
+  "OldGroup": "SG-SC-CareWorkers",
+  "NewGroup": "SG-SC-Nurses",
+  "OldGroupAbsent": true,
+  "NewGroupPresent": true,
+  "OldAppRoleAbsent": true,
+  "NewAppRolePresent": true,
+  "AttributesVerified": true,
+  "SessionsRevoked": false,
+  "ActionsCompleted": [],
+  "WriteOperationsExecuted": 0,
+  "PasswordRecorded": false,
+  "ErrorMessage": ""
+}

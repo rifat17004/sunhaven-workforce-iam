@@ -1,0 +1,12 @@
+Old application role removal readback: PASS
+Old group removal readback: PASS
+User attribute update readback: PASS
+New group assignment readback: PASS
+New application role assignment readback: PASS
+Outcome: MOVED
+Employee ID: SC1009
+User Object ID: 9ad319e7-6b32-46ba-8449-74cbc4dc01f8
+Old role removed: True
+New role verified: True
+Sessions revoked: True
+Write operations executed: 6

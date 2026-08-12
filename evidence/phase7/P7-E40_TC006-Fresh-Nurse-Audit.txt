@@ -1,0 +1,9 @@
+Sunhaven TC-006 post-move Nurse validation
+-------------------------------------------
+Event ID: 59
+User Object ID: 9ad319e7-6b32-46ba-8449-74cbc4dc01f8
+Action: OPEN_CLINICAL
+Object: clinical
+Event time UTC: 2026-08-12T18:50:48.324342+00:00
+Audit result: ALLOW
+Result: PASS
