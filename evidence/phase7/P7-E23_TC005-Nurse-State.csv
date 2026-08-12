@@ -1,0 +1,2 @@
+"CapturedUtc","EmployeeId","DisplayName","UserPrincipalName","ObjectId","AccountEnabled","JobTitle","Department","Facility","GovernedGroups","GovernedGroupCount","CareApplication","CareApplicationServiceId","CareAppRoles","CareAppRoleAssignmentCount","WriteOperationsExecuted"
+"2026-08-12T18:29:53.6462680Z","SC-TST-002","Test Nurse 01","test.nurse01@rifat011002gmail.onmicrosoft.com","d875d2a3-b835-4119-9dca-e64793a7318c","True","Nurse",,,"SG-SC-Nurses","1","Sunhaven Care Portal - LAB","107aaaf3-cec4-49d8-b5ec-0998838af3c8","Nurse","1","0"

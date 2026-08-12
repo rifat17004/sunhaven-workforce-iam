@@ -1,0 +1,9 @@
+Sunhaven TC-005 Nurse clinical-access validation
+-----------------------------------------------
+Event ID: 57
+User Object ID: d875d2a3-b835-4119-9dca-e64793a7318c
+Action: OPEN_CLINICAL
+Object: clinical
+Event time UTC: 2026-08-12T18:32:26.340210+00:00
+Audit result: ALLOW
+Result: PASS
