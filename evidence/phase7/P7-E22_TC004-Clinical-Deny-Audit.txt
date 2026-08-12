@@ -1,0 +1,9 @@
+Sunhaven TC-004 clinical-denial validation
+-------------------------------------------
+Event ID: 46
+User Object ID: 9ad319e7-6b32-46ba-8449-74cbc4dc01f8
+Action: ACCESS /clinical
+Object: /clinical
+Event time UTC: 2026-08-12T18:23:19.200898+00:00
+Audit result: DENY: role not permitted
+Result: PASS
