@@ -1,0 +1,2 @@
+"CapturedUtc","EmployeeId","DisplayName","UserPrincipalName","ObjectId","AccountEnabled","JobTitle","Department","Facility","GovernedGroups","GovernedGroupCount","CareApplication","CareApplicationServiceId","CareAppRoles","CareAppRoleAssignmentCount","WriteOperationsExecuted"
+"2026-08-12T17:46:42.7158470Z","SC1009","Jordan Blake (TEST)","jordan.blake@rifat011002gmail.onmicrosoft.com","9ad319e7-6b32-46ba-8449-74cbc4dc01f8","True","CareWorker","Sydney","Sydney","SG-SC-CareWorkers","1","Sunhaven Care Portal - LAB","107aaaf3-cec4-49d8-b5ec-0998838af3c8","CareWorker","1","0"

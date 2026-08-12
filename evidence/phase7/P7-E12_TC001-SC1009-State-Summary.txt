@@ -1,0 +1,17 @@
+Sunhaven worker access-state export
+-----------------------------------
+Captured UTC: 2026-08-12T17:46:42.7158470Z
+Tenant ID: 72a753ee-6910-4a9b-a36e-e8790da83acb
+Authenticated account: iam.admin@rifat011002gmail.onmicrosoft.com
+Employee ID: SC1009
+Display name: Jordan Blake (TEST)
+UPN: jordan.blake@rifat011002gmail.onmicrosoft.com
+Object ID: 9ad319e7-6b32-46ba-8449-74cbc4dc01f8
+Account enabled: True
+Job title: CareWorker
+Department: Sydney
+Facility: Sydney
+Governed groups: SG-SC-CareWorkers
+Care-app roles: CareWorker
+Write operations executed: 0
+Result: PASS

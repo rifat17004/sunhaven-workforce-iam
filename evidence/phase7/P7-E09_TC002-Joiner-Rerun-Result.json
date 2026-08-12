@@ -1,0 +1,17 @@
+{
+  "EventTimeUtc": "2026-08-12T17:42:06.9551940Z",
+  "Operation": "JOINER",
+  "Outcome": "NO CHANGE",
+  "EmployeeId": "SC1009",
+  "UserPrincipalName": "jordan.blake@rifat011002gmail.onmicrosoft.com",
+  "UserObjectId": "9ad319e7-6b32-46ba-8449-74cbc4dc01f8",
+  "TargetGroup": "SG-SC-CareWorkers",
+  "TargetGroupObjectId": "6562e070-0174-4701-bc0e-226c746e4d2b",
+  "EnterpriseApplication": "Sunhaven Care Portal - LAB",
+  "ServicePrincipalObjectId": "107aaaf3-cec4-49d8-b5ec-0998838af3c8",
+  "AppRole": "CareWorker",
+  "AppRoleId": "b59183af-29b5-42d2-8365-bbb34a214a20",
+  "PasswordRecorded": false,
+  "WriteOperationsExecuted": 0,
+  "Message": "The existing identity already matches the approved Joiner state."
+}

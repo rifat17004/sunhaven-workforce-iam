@@ -1,0 +1,30 @@
+
+STEP 1 - Revalidate approved input
+Sunhaven workforce input validation
+----------------------------------
+Validator mode: local and read-only
+Microsoft Graph connection: Not used
+Input file: /Users/rifat/Documents/sunhaven-workforce-iam/tests/joiner-sc1009.csv
+
+Result: PASS
+The input is ready for the read-only dry-run planner.
+No directory changes were attempted.
+
+STEP 2 - Connect to the explicit lab tenant
+Account: iam.admin@rifat011002gmail.onmicrosoft.com
+Tenant: 72a753ee-6910-4a9b-a36e-e8790da83acb
+Employee ID: SC1009
+Expected UPN: jordan.blake@rifat011002gmail.onmicrosoft.com
+Expected group: SG-SC-CareWorkers
+Expected application role: CareWorker
+
+STEP 3 - Resolve immutable target objects
+
+STEP 4 - Recheck for an existing identity
+
+SANITIZED JOINER RESULT
+Outcome: NO CHANGE
+Employee ID: SC1009
+User Object ID: 9ad319e7-6b32-46ba-8449-74cbc4dc01f8
+Result file: ./evidence/phase7/P7-E09_TC001-Joiner-Apply-Result.json
+Password recorded: False

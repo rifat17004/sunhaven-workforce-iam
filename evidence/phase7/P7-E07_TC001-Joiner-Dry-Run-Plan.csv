@@ -1,0 +1,2 @@
+"EmployeeId","DisplayName","JobRole","Facility","WorkforceStatus","EndDate","ExpectedUPN","ExpectedGroup","EntraObjectId","CurrentUPN","CurrentAccountEnabled","Action","Changes","Reason"
+"SC1009","Jordan Blake (TEST)","CareWorker","Sydney","Active","","jordan.blake@rifat011002gmail.onmicrosoft.com","SG-SC-CareWorkers","","","","CREATE","","No Entra user matched the employeeId or expected UPN."
