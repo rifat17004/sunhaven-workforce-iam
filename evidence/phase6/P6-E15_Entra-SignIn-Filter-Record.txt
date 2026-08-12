@@ -1,0 +1,26 @@
+Sunhaven Phase 6 Microsoft Entra sign-in export filter record
+-------------------------------------------------------------
+Evidence ID: P6-E15
+Log source: Microsoft Entra interactive user sign-ins
+Portal display mode: UTC
+Portal requested date range: 2026-08-11 through 2026-08-12
+Portal user filter: All users
+Portal application filter: All applications
+Portal status filter: All results
+Download format: CSV - Interactive sign-ins
+Raw export records: 57
+Local strict UTC range: 2026-08-11T00:00:00Z through 2026-08-12T23:59:59Z
+Local target users: Isabella Green (TEST); Test CareWorker 01
+Sanitised records retained: 18
+Isabella records retained: 16
+Test CareWorker records retained: 2
+Isabella disabled-account failures: 3
+Test CareWorker successful MFA events: 1
+Raw export storage: Private evidence directory outside Git
+Raw-export hash record: P6-E13_Entra-SignIn-Raw-SHA256.txt
+Sanitised report copy: P6-E14_Entra-SignIn-Sanitized.csv
+Portal-filter screenshot: P6-E16_Entra-SignIn-Filtered-Portal.png
+Excluded from report copy: network source; browser and device data; session and token identifiers
+All retained events inside strict UTC range: True
+Required evidence files present: True
+Result: PASS

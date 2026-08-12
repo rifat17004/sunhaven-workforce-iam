@@ -1,0 +1,10 @@
+Sunhaven Phase 6 raw Entra audit-export integrity record
+-------------------------------------------------------
+Evidence ID: P6-E09
+Raw filename: SC1008-Entra-Audit-Raw-2026-08-13.csv
+Storage: Private evidence directory outside Git
+Export/file time UTC: 2026-08-12T14:46:18Z
+SHA-256: da6164c59d3094569c1fd67c791bbfb32896f9e5aed68d2c78a6d8541ecba521
+File size bytes: 101397
+Tenant-wide audit records excluding header: 115
+Raw file committed to Git: No

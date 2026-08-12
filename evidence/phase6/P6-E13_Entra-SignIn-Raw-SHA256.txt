@@ -1,0 +1,10 @@
+Sunhaven Phase 6 raw Microsoft Entra sign-in export integrity record
+-------------------------------------------------------------------
+Evidence ID: P6-E13
+Raw filename: Sunhaven-Interactive-SignIns-Raw-2026-08-11-to-2026-08-12.csv
+Storage: Private evidence directory outside Git
+Export/file time UTC: 2026-08-12T15:01:42Z
+SHA-256: dfcc9b1245570e8feeb50e1ab2c415015e070ae2bf5728e7bd80b5586900fa25
+File size bytes: 66877
+Interactive sign-in records excluding header: 57
+Raw file committed to Git: No
