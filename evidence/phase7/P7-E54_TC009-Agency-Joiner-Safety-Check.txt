@@ -1,0 +1,8 @@
+
+SAFE BUILD MODE
+The -Apply switch was not supplied.
+No Microsoft Graph connection was made.
+No password was generated.
+No Entra user was created or modified.
+
+A future approved execution must include -Apply and -ApprovalText "CREATE SC1012".

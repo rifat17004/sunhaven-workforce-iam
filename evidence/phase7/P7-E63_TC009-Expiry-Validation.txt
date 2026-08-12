@@ -1,0 +1,14 @@
+Sunhaven TC-009 AgencyWorker expiry validation
+------------------------------------------------
+Employee ID: SC1012
+Before-expiry account enabled: True
+Before-expiry group: SG-SC-AgencyWorkers
+Before-expiry app role: AgencyWorker
+End date: 2026-08-13
+Planner action: DISABLE
+Planned change: accountEnabled: 'True' -> 'False'
+Before-state valid: True
+Expiry plan valid: True
+Dry-run summary valid: True
+Directory write operations during expiry test: 0
+Result: PASS

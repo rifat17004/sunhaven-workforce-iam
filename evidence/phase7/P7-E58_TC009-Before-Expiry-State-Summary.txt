@@ -1,0 +1,17 @@
+Sunhaven worker access-state export
+-----------------------------------
+Captured UTC: 2026-08-12T19:16:04.0823210Z
+Tenant ID: 72a753ee-6910-4a9b-a36e-e8790da83acb
+Authenticated account: iam.admin@rifat011002gmail.onmicrosoft.com
+Employee ID: SC1012
+Display name: Avery Morgan (TEST)
+UPN: avery.morgan@rifat011002gmail.onmicrosoft.com
+Object ID: fa9ecd22-9330-46e8-bb2e-b254ec587aec
+Account enabled: True
+Job title: AgencyWorker
+Department: Sydney
+Facility: Sydney
+Governed groups: SG-SC-AgencyWorkers
+Care-app roles: AgencyWorker
+Write operations executed: 0
+Result: PASS

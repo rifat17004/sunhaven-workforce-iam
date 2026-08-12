@@ -1,0 +1,46 @@
+
+STEP 1 - Revalidate approved input
+Sunhaven workforce input validation
+----------------------------------
+Validator mode: local and read-only
+Microsoft Graph connection: Not used
+Input file: /Users/rifat/Documents/sunhaven-workforce-iam/tests/joiner-sc1012-agency.csv
+
+Result: PASS
+The input is ready for the read-only dry-run planner.
+No directory changes were attempted.
+
+STEP 2 - Connect to the explicit lab tenant
+Account: iam.admin@rifat011002gmail.onmicrosoft.com
+Tenant: 72a753ee-6910-4a9b-a36e-e8790da83acb
+Employee ID: SC1012
+Expected UPN: avery.morgan@rifat011002gmail.onmicrosoft.com
+Expected group: SG-SC-AgencyWorkers
+Expected application role: AgencyWorker
+
+STEP 3 - Resolve immutable target objects
+
+STEP 4 - Recheck for an existing identity
+
+STEP 5 - Create the approved Joiner
+Created user Object ID: fa9ecd22-9330-46e8-bb2e-b254ec587aec
+Created user readback: PASS
+Added group: SG-SC-AgencyWorkers
+Group membership readback: PASS
+Assigned application role: AgencyWorker
+Application role readback: PASS
+
+STEP 6 - Verify final desired state
+
+SECURE PASSWORD HANDOFF
+The temporary password was copied to the macOS clipboard. It was not printed or saved.
+Paste it into your password manager. Do not paste it into evidence, Git, Notes or chat.
+After storing it securely, press Enter to clear the clipboard:
+
+SANITIZED JOINER RESULT
+Outcome: CREATED
+Employee ID: SC1012
+User Object ID: fa9ecd22-9330-46e8-bb2e-b254ec587aec
+Result file: ./evidence/phase7/P7-E55_TC009-Agency-Joiner-Apply-Result.json
+Password recorded: False
+The next phase will verify the profile, assignments, first sign-in, MFA and app access.

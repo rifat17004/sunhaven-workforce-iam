@@ -1,0 +1,9 @@
+Sunhaven TC-009 AgencyWorker candidate preflight
+------------------------------------------------
+Tenant verified: 72a753ee-6910-4a9b-a36e-e8790da83acb
+Permission requested: User.Read.All
+Candidate employeeId: SC1012
+Candidate UPN: avery.morgan@rifat011002gmail.onmicrosoft.com
+Existing matching identities: 0
+Directory write operations: 0
+Result: PASS

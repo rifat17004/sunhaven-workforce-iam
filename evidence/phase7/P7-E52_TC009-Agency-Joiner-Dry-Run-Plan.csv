@@ -1,0 +1,2 @@
+"EmployeeId","DisplayName","JobRole","Facility","WorkforceStatus","EndDate","ExpectedUPN","ExpectedGroup","EntraObjectId","CurrentUPN","CurrentAccountEnabled","Action","Changes","Reason"
+"SC1012","Avery Morgan (TEST)","AgencyWorker","Sydney","Active","2026-08-14","avery.morgan@rifat011002gmail.onmicrosoft.com","SG-SC-AgencyWorkers","","","","CREATE","","No Entra user matched the employeeId or expected UPN."
