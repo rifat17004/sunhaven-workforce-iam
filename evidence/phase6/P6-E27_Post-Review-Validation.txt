@@ -1,0 +1,14 @@
+Sunhaven Phase 6 post-review access validation
+------------------------------------------------
+Completed-review records: 4
+Approve decisions: 3
+Deny decisions: 1
+Post-review access holders: 3
+Approved users missing: 0
+Approved assignments unexpectedly changed: 0
+Denied users still holding access: 0
+Unexpected access holders: 0
+Blank or invalid decisions: 0
+Expected final access holders: 3
+Directory write operations during validation: 0
+Result: PASS

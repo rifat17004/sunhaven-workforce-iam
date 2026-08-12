@@ -1,0 +1,32 @@
+STEP 1 - Validate the completed manager review
+Decision: Deny
+Target: Sunhaven IAM Administrator
+Object ID: cfc194ca-76bb-47f6-9332-f389d6d34c4d
+Assignment: DefaultAccess
+STEP 2 - Connect to the verified tenant
+Authenticated tenant: 72a753ee-6910-4a9b-a36e-e8790da83acb
+Mode: APPLY
+STEP 3 - Resolve and verify the exact assignment
+STEP 4 - Remove the single denied app assignment
+
+[32;1mGeneratedUtc            : [0m2026-08-12T16:14:53.4959220Z
+[32;1mMode                    : [0mAPPLY
+[32;1mTenantId                : [0m72a753ee-6910-4a9b-a36e-e8790da83acb
+[32;1mApplication             : [0mSunhaven Care Portal - LAB
+[32;1mReviewEvidence          : [0m./evidence/phase6/P6-E19_Completed-Access-Review.csv
+[32;1mReviewDecision          : [0mDeny
+[32;1mReviewer                : [0mRifat Islam Emon - Project Reviewer (LAB)
+[32;1mReviewDate              : [0m2026-08-12
+[32;1mTargetDisplayName       : [0mSunhaven IAM Administrator
+[32;1mTargetUserPrincipalName : [0miam.admin@rifat011002gmail.onmicrosoft.com
+[32;1mTargetObjectId          : [0mcfc194ca-76bb-47f6-9332-f389d6d34c4d
+[32;1mExpectedAppRole         : [0mDefaultAccess
+[32;1mExpectedAppRoleId       : [0m00000000-0000-0000-0000-000000000000
+[32;1mAppRoleAssignmentId     : [0mypTBz7t29keTMvOJ1tNMTYQ5R97a4KxAqXcrmkphCu8
+[32;1mAction                  : [0mREMOVE_DEFAULT_ACCESS_ASSIGNMENT
+[32;1mOutcome                 : [0mREMOVED
+[32;1mAssignmentAbsent        : [0mTrue
+[32;1mWriteOperationsExecuted : [0m1
+[32;1mMessage                 : [0mThe denied DefaultAccess assignment was removed and its absence was verified.
+
+Result: PASS

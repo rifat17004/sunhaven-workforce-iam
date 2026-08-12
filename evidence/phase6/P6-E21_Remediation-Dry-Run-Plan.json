@@ -1,0 +1,21 @@
+{
+  "GeneratedUtc": "2026-08-12T16:12:46.7070970Z",
+  "Mode": "SAFE_NO_APPLY",
+  "TenantId": "72a753ee-6910-4a9b-a36e-e8790da83acb",
+  "Application": "Sunhaven Care Portal - LAB",
+  "ReviewEvidence": "./evidence/phase6/P6-E19_Completed-Access-Review.csv",
+  "ReviewDecision": "Deny",
+  "Reviewer": "Rifat Islam Emon - Project Reviewer (LAB)",
+  "ReviewDate": "2026-08-12",
+  "TargetDisplayName": "Sunhaven IAM Administrator",
+  "TargetUserPrincipalName": "iam.admin@rifat011002gmail.onmicrosoft.com",
+  "TargetObjectId": "cfc194ca-76bb-47f6-9332-f389d6d34c4d",
+  "ExpectedAppRole": "DefaultAccess",
+  "ExpectedAppRoleId": "00000000-0000-0000-0000-000000000000",
+  "AppRoleAssignmentId": "ypTBz7t29keTMvOJ1tNMTYQ5R97a4KxAqXcrmkphCu8",
+  "Action": "REMOVE_DEFAULT_ACCESS_ASSIGNMENT",
+  "Outcome": "PLANNED",
+  "AssignmentAbsent": false,
+  "WriteOperationsExecuted": 0,
+  "Message": "The reviewed DefaultAccess assignment is present and ready for approved removal."
+}
