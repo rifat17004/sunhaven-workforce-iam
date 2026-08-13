@@ -1,0 +1,17 @@
+Sunhaven worker access-state export
+-----------------------------------
+Captured UTC: 2026-08-13T07:44:38.2406520Z
+Tenant ID: 72a753ee-6910-4a9b-a36e-e8790da83acb
+Authenticated account: iam.admin@rifat011002gmail.onmicrosoft.com
+Employee ID: SC1013
+Display name: Rehearsal Worker 01 (TEST)
+UPN: rehearsal.worker.sc1013@rifat011002gmail.onmicrosoft.com
+Object ID: 67583254-adc1-4272-abfe-7fd0d9a2a371
+Account enabled: True
+Job title: CareWorker
+Department: Sydney
+Facility: Sydney
+Governed groups: SG-SC-CareWorkers
+Care-app roles: CareWorker
+Write operations executed: 0
+Result: PASS

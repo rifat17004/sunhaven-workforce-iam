@@ -1,0 +1,1 @@
+Paste the TEST user's Entra object_id: Enter CareWorker or AgencyWorker: Assigned 2 TEST resident(s) to role CareWorker.

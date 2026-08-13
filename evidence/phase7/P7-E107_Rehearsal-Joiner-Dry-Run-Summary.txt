@@ -1,0 +1,18 @@
+Sunhaven workforce Graph dry-run
+----------------------------------
+Generated UTC: 2026-08-13T07:39:11.3460610Z
+As-of date: 2026-08-13
+Tenant ID: 72a753ee-6910-4a9b-a36e-e8790da83acb
+Tenant domain: rifat011002gmail.onmicrosoft.com
+Authenticated account: iam.admin@rifat011002gmail.onmicrosoft.com
+Graph permission requested: User.Read.All
+Entra users read: 10
+Workforce records examined: 1
+CREATE: 1
+UPDATE: 0
+DISABLE: 0
+NO CHANGE: 0
+ERROR: 0
+Result: PASS
+Write operations executed: 0
+Plan file: ./evidence/phase7/P7-E106_Rehearsal-Joiner-Dry-Run-Plan.csv

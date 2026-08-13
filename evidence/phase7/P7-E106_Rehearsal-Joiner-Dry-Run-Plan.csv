@@ -1,0 +1,2 @@
+"EmployeeId","DisplayName","JobRole","Facility","WorkforceStatus","EndDate","ExpectedUPN","ExpectedGroup","EntraObjectId","CurrentUPN","CurrentAccountEnabled","Action","Changes","Reason"
+"SC1013","Rehearsal Worker 01 (TEST)","CareWorker","Sydney","Active","","rehearsal.worker.sc1013@rifat011002gmail.onmicrosoft.com","SG-SC-CareWorkers","","","","CREATE","","No Entra user matched the employeeId or expected UPN."
