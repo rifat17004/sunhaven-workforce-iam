@@ -1,0 +1,9 @@
+Sunhaven Step 7.2 rehearsal release baseline
+---------------------------------------------
+Release tag: sunhaven-mvp-v1.0.0
+Release tag found: True
+Current HEAD: 98ef74a45b643c642c71ece0fbcba559e0808364
+Tagged commit: 98ef74a45b643c642c71ece0fbcba559e0808364
+Tag identifies current HEAD: True
+Working tree clean before rehearsal preparation: True
+Result: PASS
