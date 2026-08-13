@@ -1,0 +1,14 @@
+Sunhaven Step 7.3 future-roadmap validation
+--------------------------------------------
+Roadmap actions recorded: 12
+All expected roadmap IDs present: True
+Required fields complete: True
+Priorities valid: True
+Statuses valid: True
+Residual-risk links present: True
+P0 actions: 5
+P1 actions: 3
+P2 actions: 3
+P3 actions: 1
+New directory write operations: 0
+Result: PASS

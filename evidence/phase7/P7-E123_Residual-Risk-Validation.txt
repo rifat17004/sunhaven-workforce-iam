@@ -1,0 +1,12 @@
+Sunhaven Step 7.3 residual-risk validation
+--------------------------------------------
+Risks recorded: 12
+All expected risk IDs present: True
+Scores equal Impact x Likelihood: True
+Ratings match score bands: True
+Required fields complete: True
+High risks: 7
+Moderate risks: 5
+Critical risks: 0
+New directory write operations: 0
+Result: PASS
