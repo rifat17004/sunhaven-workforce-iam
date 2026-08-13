@@ -1,0 +1,11 @@
+Sunhaven final-handover tag and history validation
+---------------------------------------------------
+Tag examined: sunhaven-mvp-v1.0.0
+Tag exists: True
+Tag is an ancestor of main: True
+Tagged transcript version redacted: True
+Reachable transcript versions examined: 52
+Reachable versions without redaction: 0
+Sensitive values displayed: No
+Git references modified: 0
+Result: PASS

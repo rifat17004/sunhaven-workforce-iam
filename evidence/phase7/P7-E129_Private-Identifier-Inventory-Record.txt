@@ -1,0 +1,17 @@
+Sunhaven private identifier-inventory record
+---------------------------------------------
+Evidence ID: P7-E129
+Private filename: Sunhaven-Identifier-Inventory.txt
+Private storage outside Git: True
+Private file exists and is non-empty: True
+Private file permission mode: 600
+Private file size bytes: 1135
+Private file SHA-256: b044823e70e1efae321e1fe09d6e51536d14cdfa4965fb4dce7a1c06f2b0e419
+Tenant and application identifiers documented: True
+Application-role identifiers documented: True
+Governed-group identifiers documented: True
+Client secret included: No
+Password or access token included: No
+Identifier values displayed in this report: No
+Private inventory must not be uploaded to GitHub: Yes
+Result: PASS

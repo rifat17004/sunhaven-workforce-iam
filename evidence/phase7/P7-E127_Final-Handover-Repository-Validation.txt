@@ -1,0 +1,12 @@
+Sunhaven final-handover repository validation
+----------------------------------------------
+Branch: main
+Release candidate commit: 67c35f84a93d38b8f5169643d859bb11437c9c58
+Working tree clean before report creation: True
+Tracked real .env files: 0
+app/.env excluded by Git: True
+Active Git-history security check passed: True
+TC-013 finding adjudication passed: True
+Sensitive values displayed: No
+Directory write operations: 0
+Result: PASS
