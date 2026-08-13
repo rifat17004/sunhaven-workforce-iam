@@ -1,0 +1,12 @@
+Evidence ID: P7-E88
+Original private transcript SHA-256: 578e1903f38ee27ec8e151bde2ba4ad8f46e96078549ef8e1548618839f44d50
+Raw storage: Private evidence directory outside Git
+Repository transcript: evidence/phase3/P3-E21_Graph-Test-Transcript-20260808-021906.txt
+Reviewed line: 220
+Reason: Credential-like field could not be conclusively classified as non-secret
+Credential value displayed during review: No
+Transcript line located: True
+Credential field recognized: True
+Original value displayed: No
+Repository copy sanitized: True
+Result: PASS

@@ -1,0 +1,10 @@
+Sunhaven TC-013 resident privacy validation
+---------------------------------------------
+Resident records examined: 5
+All resident IDs use RES-TEST format: True
+All resident names contain TEST: True
+All facility names contain TEST: True
+Stored care notes: 0
+Resident values displayed: No
+Real resident information used: No
+Result: PASS

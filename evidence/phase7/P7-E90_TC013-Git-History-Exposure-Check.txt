@@ -1,0 +1,8 @@
+Sunhaven TC-013 Git-history exposure check
+--------------------------------------------
+Sensitive values displayed: No
+Historical versions examined: 1
+Historical versions without TC-013 redaction: 1
+Configured Git remotes: 0
+Historical exposure detected: Yes
+Result: HISTORY CLEANUP REQUIRED
