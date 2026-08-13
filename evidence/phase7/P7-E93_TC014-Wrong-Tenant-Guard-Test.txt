@@ -1,0 +1,15 @@
+Sunhaven TC-014 wrong-tenant guard test
+----------------------------------------
+Test mode: Isolated local guard execution
+Microsoft Graph connection attempted: No
+Requested tenant: 72a753ee-6910-4a9b-a36e-e8790da83acb
+Simulated authenticated tenant: 11111111-1111-1111-1111-111111111111
+Tenant guard source line: 630
+First directory-write command: New-MgUser
+First directory-write line: 999
+Guard occurs before first write: True
+Write-capable commands inside executed guard: 0
+Wrong-tenant request rejected: True
+Expected error message returned: True
+Directory write operations executed: 0
+Result: PASS

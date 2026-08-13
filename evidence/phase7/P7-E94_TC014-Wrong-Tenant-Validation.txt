@@ -1,0 +1,14 @@
+Sunhaven TC-014 wrong-tenant protection validation
+----------------------------------------------------
+Requirement: REQ-SAFETY
+Source inspection present: True
+Negative guard test present: True
+Graph context validation found: True
+Wrong-tenant exception found: True
+Directory-write command identified: True
+Guard occurs before first write: True
+Wrong tenant rejected: True
+Expected exception verified: True
+Microsoft Graph connection attempted by test: No
+Directory write operations executed: 0
+Result: PASS

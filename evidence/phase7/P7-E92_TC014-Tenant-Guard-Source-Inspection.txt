@@ -1,0 +1,123 @@
+Sunhaven TC-014 tenant-guard source inspection
+------------------------------------------------
+Script: automation/Invoke-SunhavenJoiner.ps1
+
+=== GRAPH CONNECTION AND TENANT VALIDATION ===
+try {
+    Connect-MgGraph `
+        -TenantId $TenantId `
+        -Scopes $requiredScopes `
+        -ContextScope Process `
+        -NoWelcome
+
+    $graphConnected = $true
+    $graphContext = Get-MgContext
+
+    if ($null -eq $graphContext) {
+        throw "Microsoft Graph authentication context is missing."
+    }
+
+    if (
+        -not [string]::Equals(
+            [string]$graphContext.TenantId,
+            $TenantId,
+            [System.StringComparison]::OrdinalIgnoreCase
+        )
+    ) {
+        throw (
+            "Wrong tenant. Expected $TenantId but connected to " +
+            "$($graphContext.TenantId)."
+        )
+    }
+
+    foreach ($requiredScope in $requiredScopes) {
+        if ($requiredScope -notin $graphContext.Scopes) {
+            throw (
+                "Required Graph scope is missing: $requiredScope"
+            )
+        }
+    }
+
+    Write-Host "Account: $($graphContext.Account)"
+    Write-Host "Tenant: $($graphContext.TenantId)"
+    Write-Host "Employee ID: $EmployeeId"
+    Write-Host "Expected UPN: $expectedUpn"
+    Write-Host "Expected group: $expectedGroupName"
+    Write-Host "Expected application role: $jobRole"
+
+    Write-Host ""
+    Write-Host "STEP 3 - Resolve immutable target objects" `
+        -ForegroundColor Cyan
+
+    $targetGroup = Get-MgGroup `
+        -GroupId $targetGroupId `
+        -Property @(
+            "id",
+            "displayName",
+            "securityEnabled"
+        )
+
+    if ($null -eq $targetGroup) {
+        throw "The target security group was not found."
+    }
+
+    if (
+        -not [string]::Equals(
+            [string]$targetGroup.DisplayName,
+            $expectedGroupName,
+            [System.StringComparison]::Ordinal
+        )
+    ) {
+        throw (
+            "Group ID $targetGroupId belongs to " +
+            "'$($targetGroup.DisplayName)', not " +
+            "'$expectedGroupName'."
+        )
+    }
+
+    if (-not [bool]$targetGroup.SecurityEnabled) {
+        throw "$expectedGroupName is not a security group."
+    }
+
+    $escapedApplicationName =
+        $ApplicationDisplayName.Replace("'", "''")
+
+    $servicePrincipals = @(
+        Get-MgServicePrincipal `
+            -Filter (
+                "displayName eq '$escapedApplicationName'"
+            ) `
+            -All `
+
+=== FIRST DIRECTORY-WRITE SECTION ===
+        $passwordProfile = @{
+            password = $temporaryPassword
+            forceChangePasswordNextSignIn = $true
+        }
+
+        $newUserBody = @{
+            accountEnabled = $true
+            displayName = $displayName
+            mailNickname = $mailAlias
+            userPrincipalName = $expectedUpn
+            passwordProfile = $passwordProfile
+            employeeId = $EmployeeId
+            jobTitle = $jobRole
+            department = $facility
+            officeLocation = $facility
+            usageLocation = "AU"
+        }
+
+        $createdUser =
+            New-MgUser `
+                -BodyParameter $newUserBody
+
+        if (
+            $null -eq $createdUser -or
+            [string]::IsNullOrWhiteSpace(
+                [string]$createdUser.Id
+            )
+        ) {
+            throw "Graph did not return the created user Object ID."
+        }
+
