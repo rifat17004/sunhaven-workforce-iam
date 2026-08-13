@@ -1,0 +1,14 @@
+Sunhaven Phase 7 live-demo rehearsal outcome
+----------------------------------------------
+Rehearsal identity: SC1013
+Completed UTC: 2026-08-13T07:57:52Z
+Duration seconds: 1137
+Leaver outcome correct: True
+Account disabled: True
+Governed groups removed: True
+Care-app roles removed: True
+Local application blocked: True
+Sessions revoked: True
+Repeated full test evidence collected: No
+Sensitive credentials recorded: No
+Result: PASS

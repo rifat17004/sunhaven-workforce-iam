@@ -1,0 +1,7 @@
+Sunhaven Phase 7 live-demo rehearsal timing
+---------------------------------------------
+Employee ID: SC1013
+Rehearsal started UTC: 2026-08-13T07:38:55Z
+Rehearsal start epoch: 1786606735
+Target duration: 10 minutes
+Status: COMPLETED
