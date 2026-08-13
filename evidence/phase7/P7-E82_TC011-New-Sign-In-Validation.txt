@@ -1,0 +1,20 @@
+Sunhaven TC-011 post-leaver new sign-in validation
+---------------------------------------------------
+Employee ID: SC1012
+User: Avery Morgan (TEST)
+User Object ID: fa9ecd22-9330-46e8-bb2e-b254ec587aec
+User principal name: avery.morgan@rifat011002gmail.onmicrosoft.com
+Leaver completed UTC: 2026-08-12T19:34:24.8631010Z
+New sign-in attempt UTC: 2026-08-12T19:37:20Z
+Request ID: 6b6d1ea6-f48f-4684-ba07-624e46071c00
+Correlation ID: 98dd57ed-75fc-45ca-9b50-f88a6d15d9bd
+Sign-in status: Failure
+Sign-in error code: 50057
+Failure reason: The user account is disabled.
+Sign-in occurred after leaver completion: True
+Application session issued: No
+Account re-enabled during test: No
+Local application block removed: No
+Preparation note: The administrator reset the fictional user password because the original temporary password was unavailable. The account remained disabled.
+Temporary password recorded in evidence: No
+Result: PASS
