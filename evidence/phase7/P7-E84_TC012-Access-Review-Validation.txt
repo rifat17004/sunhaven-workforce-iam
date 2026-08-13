@@ -1,0 +1,25 @@
+Sunhaven TC-012 access-review Deny validation
+------------------------------------------------
+Requirement: REQ-REVIEW
+Application: Sunhaven Care Portal - LAB
+Completed-review records: 4
+Approve decisions: 3
+Deny decisions: 1
+Denied identity: Sunhaven IAM Administrator
+Denied access type: DefaultAccess
+Remediation action: REMOVE_DEFAULT_ACCESS_ASSIGNMENT
+Remediation outcome: REMOVED
+Denied assignment absent: True
+Apply write operations executed: 1
+Post-review access holders: 3
+Approved users missing: 0
+Approved assignments unexpectedly changed: 0
+Denied users still holding access: 0
+Unexpected access holders: 0
+Validation directory write operations: 0
+Remediation record valid: True
+Final-state validation valid: True
+Historical evidence files found: True
+Approved-access screenshot present: True
+Denied-access screenshot present: True
+Result: PASS

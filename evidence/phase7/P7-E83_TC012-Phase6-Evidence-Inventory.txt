@@ -1,0 +1,20 @@
+Sunhaven TC-012 Phase 6 evidence inventory
+------------------------------------------
+Test: Access-review Deny
+Requirement: REQ-REVIEW
+Historical process: Phase 6 access review and remediation
+
+FOUND | evidence/phase6/P6-E17_Pre-Review-Access-Inventory.csv
+FOUND | evidence/phase6/P6-E18_Pre-Review-Inventory-Summary.txt
+FOUND | evidence/phase6/P6-E19_Completed-Access-Review.csv
+FOUND | evidence/phase6/P6-E20_Access-Review-Decision-Summary.txt
+FOUND | evidence/phase6/P6-E21_Remediation-Dry-Run-Plan.json
+FOUND | evidence/phase6/P6-E22_Remediation-Dry-Run-Transcript.txt
+FOUND | evidence/phase6/P6-E23_Access-Review-Remediation-Result.json
+FOUND | evidence/phase6/P6-E24_Access-Review-Remediation-Transcript.txt
+FOUND | evidence/phase6/P6-E25_Post-Review-Access-Inventory.csv
+FOUND | evidence/phase6/P6-E26_Post-Review-Inventory-Summary.txt
+FOUND | evidence/phase6/P6-E27_Post-Review-Validation.txt
+FOUND | evidence/phase6/P6-E28_Post-Review-Approved-Assignments.png
+FOUND | evidence/phase6/P6-E29_IAM-Administrator-App-Denied.png
+FOUND | evidence/phase6/P6-E30_Reviewer-Operator-Separation-Note.md
