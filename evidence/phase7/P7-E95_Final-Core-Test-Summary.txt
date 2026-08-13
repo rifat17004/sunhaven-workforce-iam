@@ -1,0 +1,29 @@
+Sunhaven Phase 7 final core-test summary
+------------------------------------------
+Crosswalk: P7-E02_Core-Test-Crosswalk.csv
+Required core tests: 14
+Test records found: 14
+PASS results: 14
+Non-PASS results: 0
+Missing test IDs: 0
+Duplicate test IDs: 0
+Tests missing final evidence: 0
+
+Individual results:
+TC-001 | PASS | P7-E04; P7-E05; P7-E07; P7-E08; P7-E11; P7-E12; P7-E13; P7-E14; P7-E15; P7-E16
+TC-002 | PASS | P7-E09; P7-E10; P7-E11; P7-E12
+TC-003 | PASS | P7-E17; P7-E18; P7-E19; P7-E20
+TC-004 | PASS | P7-E21; P7-E22
+TC-005 | PASS | P7-E23; P7-E24; P7-E25; P7-E26; P7-E27
+TC-006 | PASS | P7-E30; P7-E31; P7-E32; P7-E33; P7-E34; P7-E35; P7-E36; P7-E38; P7-E39; P7-E40; P7-E41; P7-E42
+TC-007 | PASS | P7-E43; P7-E44; P7-E45
+TC-008 | PASS | P7-E46; P7-E47; P7-E48
+TC-009 | PASS | P7-E49; P7-E50; P7-E52; P7-E53; P7-E55; P7-E57; P7-E58; P7-E59; P7-E61; P7-E62; P7-E63
+TC-010 | PASS | P7-E64; P7-E65; P7-E66; P7-E67; P7-E69; P7-E70; P7-E71; P7-E72; P7-E73; P7-E74; P7-E75; P7-E76; P7-E77; P7-E78; P7-E79
+TC-011 | PASS | P7-E72; P7-E78; P7-E80; P7-E81; P7-E82
+TC-012 | PASS | P6-E17 to P6-E30; P7-E83; P7-E84
+TC-013 | PASS | P7-E85; P7-E86; P7-E87; P7-E88; P7-E89; P7-E90; P7-E91
+TC-014 | PASS | P7-E92; P7-E93; P7-E94
+
+All MVP core tests passed: True
+Result: PASS
