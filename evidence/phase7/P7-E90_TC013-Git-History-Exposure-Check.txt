@@ -1,8 +1,12 @@
 Sunhaven TC-013 Git-history exposure check
 --------------------------------------------
 Sensitive values displayed: No
-Historical versions examined: 1
-Historical versions without TC-013 redaction: 1
+Historical transcript versions examined: 43
+Versions without TC-013 redaction: 0
+Temporary original-history references: 0
+Old original HEAD accessible in repository: False
 Configured Git remotes: 0
-Historical exposure detected: Yes
-Result: HISTORY CLEANUP REQUIRED
+Private recovery bundle retained outside Git: True
+Private recovery bundle must not be uploaded: Yes
+Historical exposure in active repository: No
+Result: PASS
