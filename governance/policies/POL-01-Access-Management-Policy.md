@@ -1,11 +1,11 @@
 # POL-01 — Access Management Policy
 
-**Organisation:** Sunhaven Care
-**Policy owner:** Sunhaven Service Owner
-**Technical owner:** IAM and Security Lead
-**Version:** 1.0
-**Classification:** Internal – Student Laboratory Project
-**Review frequency:** At every major project milestone and at least annually if adopted operationally
+**Organisation:** Sunhaven Care <br>
+**Policy owner:** Sunhaven Service Owner <br>
+**Technical owner:** IAM and Security Lead <br>
+**Version:** 1.0 <br>
+**Classification:** Internal – Student Laboratory Project <br>
+**Review frequency:** At every major project milestone and at least annually if adopted operationally <br>
 
 ## 1. Purpose
 
