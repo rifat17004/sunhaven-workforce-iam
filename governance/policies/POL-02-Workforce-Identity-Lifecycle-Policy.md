@@ -1,11 +1,11 @@
 # POL-02 — Workforce Identity Lifecycle Policy
 
-**Organisation:** Sunhaven Care
-**Policy owner:** Workforce/HR Owner
-**Technical owner:** IAM and Automation Lead
-**Version:** 1.0
-**Classification:** Internal – Student Laboratory Project
-**Review frequency:** At every major project milestone and after any material lifecycle failure
+**Organisation:** Sunhaven Care </br>
+**Policy owner:** Workforce/HR Owner </br>
+**Technical owner:** IAM and Automation Lead </br>
+**Version:** 1.0 </br>
+**Classification:** Internal – Student Laboratory Project </br>
+**Review frequency:** At every major project milestone and after any material lifecycle failure </br>
 
 ## 1. Purpose
 
