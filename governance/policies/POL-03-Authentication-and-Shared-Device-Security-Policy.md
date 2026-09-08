@@ -1,11 +1,11 @@
 # POL-03 — Authentication and Shared-Device Security Policy
 
-**Organisation:** Sunhaven Care
-**Policy owner:** Security Owner
-**Technical owners:** IAM Lead and Application Security Lead
-**Version:** 1.0
-**Classification:** Internal – Student Laboratory Project
-**Review frequency:** At every major project milestone and after an authentication or session-control incident
+**Organisation:** Sunhaven Care </br>
+**Policy owner:** Security Owner </br>
+**Technical owners:** IAM Lead and Application Security Lead </br>
+**Version:** 1.0 </br>
+**Classification:** Internal – Student Laboratory Project </br>
+**Review frequency:** At every major project milestone and after an authentication or session-control incident </br>
 
 ## 1. Purpose
 
